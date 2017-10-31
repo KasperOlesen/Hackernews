@@ -1,5 +1,6 @@
-<<<<<<< HEAD
-frontend/node_modules/
-=======
 frontend/node_modules
->>>>>>> 3705e41b59a680730994d0c9ff4eb106890782b6
+frontend/node_modules/
+frontend/node_modules/*
+frontend/node_modules/.bin/*
+frontend/package-lock.json
+frontend/package.json

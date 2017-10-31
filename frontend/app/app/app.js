@@ -14,7 +14,8 @@ angular.module('myApp', [
   'myApp.filters',
   'myApp.directives',
   'myApp.factories',
-  'myApp.services'
+  'myApp.services',
+  'myApp.fakeBackend'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/view1'});
@@ -22,5 +23,3 @@ config(['$routeProvider', function($routeProvider) {
 config(function ($httpProvider) {
    $httpProvider.interceptors.push('authInterceptor');
 });
-
-

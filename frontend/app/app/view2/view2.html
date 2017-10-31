@@ -1,31 +1,36 @@
 
-<div ng-controller="View2Ctrl as ctrl">
+<div>
 
-<!--        <div>
-            <h3>Stories</h3>
+        <div class="status-report panel panel-default">
+        <h2 class="panel-heading"> Profile</h2>
+        <div class="panel-body">
+
+        <div class="row" style="padding: 20px;">
+            <div class="col">
+                <label>Name: {{person.name}}</label>
+            </div>
+            <div class="col">
+                <label>Karma: {{person.karma}} </label>
+            </div>
+            <div class="col">
+                <label>E-mail: {{person.email}}</label>
+            </div>
+            <div class="col">
+                <label>password: ********</label>
+            </div>
+      </div>
+      <label>Change password</label>
+      <form ng-submit="submit()">
+        <div>
+          <label for="pwd">skriv nyt password:</label>
+          <input type="password" class="form-control" ng-model="pwd1"/>
         </div>
-
-        <uib-accordion>
-            <uib-accordion-group style="width: 80%">
-                <uib-accordion-heading>       
-                    <table style="width: 100%; border-spacing: 0;">
-                        <tr>
-                            <td>{{flight.origin}} &rarr; {{flight.destination}}</td>
-                            <td style="text-align: center">{{flight.date}}</td>
-                            <td style="text-align: right">Price: {{flight.totalPrice| currency:"&#8364;"}}</td>
-                        </tr>
-                    </table>    
-                </uib-accordion-heading>
-                <uib-accordion-body>
-                    <p>Airline : {{json.airline}}</p>
-                    <p>Flight: {{flightIdFormat(flight.flightID)}}</p>
-                    <p>Departure time: {{dateTimeFormat(flight.date)[1]}}</p>
-                    <p>Travel time: {{flight.traveltime}} minutes</p>
-                    <p>Price per ticket: {{basePrice}}</p>
-                    <p>Number of seats: {{flight.numberOfSeats}}</p>
-                    <a class="btn btn-danger" ng-click="">Delete reservation</a>
-                </uib-accordion-body>
-            </uib-accordion-group>  
-        </uib-accordion>-->
-
+        <div>
+          <label for="pwd">Gentag password:</label>
+          <input type="password" class="form-control" ng-model="pwd2"/>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit" value="Submit">submit</button>
+      </form>
+    </div>
+  </div>
 </div>
