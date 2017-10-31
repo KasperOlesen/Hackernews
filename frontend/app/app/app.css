@@ -102,3 +102,12 @@ ol.list > li:before {
 
 }
 
+.testmig{
+    text-align: right;
+    color: red;
+}
+
+.loginBox{
+    margin-bottom: 10px;    
+}
+
