@@ -8,7 +8,6 @@ angular.module('myApp.factories', [])
                 var urlBaseComment = 'api/comment';
                 var dataFactory = {};
                 var postInfo = [];
-                var commentInfo = [];
                 var commentCount = 0;
 //                dataFactory.addItem = function (item) {
 //                    basePrice = (item.totalPrice / item.numberOfSeats);
@@ -80,6 +79,7 @@ angular.module('myApp.factories', [])
                 };
 
                 dataFactory.getAllComments = function () {
+                    var commentInfo = [];
 //                    commentInfo.push($http.get(urlBaseComment + "/" + info));
                     commentInfo.push(comment1, comment2, comment3);
                     return commentInfo;
