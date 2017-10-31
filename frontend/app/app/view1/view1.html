@@ -2,7 +2,7 @@
 <h1 style="color:#105cb6">View1</h1>
 <br>
 <br>
-<div class="container">
+<div class="view1container" ng-repeat="post in posts">
 
         <div class="post">
             <span>1</span>
@@ -14,8 +14,8 @@
         </div>
 
         <div class="title" >
-                <span>The Canadian Ghost Town That Tesla Is Bringing Back to Life</span>
-                (<a href="" >bloomberg.com</a>)
+                <span>{{post.post_title}}</span>
+                (<a href="" >{{post.post_url}}</a>)
         </div>
 
         <div class="stats" >
@@ -23,22 +23,19 @@
                 <a href="">123</a>
            </span>
            <span class="">
-                points by
+                points // submitted by
            </span>
            <span class="">
-                <a href="">NAME</a>
+                <a href="">{{post.username}}</a>
            </span>
+           //
            <span class="">
-                <a href="">? hours ago</a>
+                <a href="">Timestamp</a>
            </span>
-           /
+           //
            <span class="">
-                <a href="">hide</a>
-           </span>
-           /
-           <span class="">
-                <a href="">? comments</a>
+                <a href="#/view6">{{post.commentCount}} comments</a>
            </span>
         </div>
-
     </div>
+    

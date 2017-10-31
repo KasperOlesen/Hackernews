@@ -30,14 +30,15 @@ ol.list > li:before {
 }
 
 
+
 .loginBox{
     margin-bottom: 10px;    
 }
 
-.container{
+.view1container{
     width: 100%; 
     height: 40px; 
-    margin: 0;
+    margin: 3px;
 }
 
 .post{
