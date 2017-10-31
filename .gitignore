@@ -1,4 +1,6 @@
 frontend/node_modules
 frontend/node_modules/
 frontend/node_modules/*
-frontend/node_modules/.bin/he
+frontend/node_modules/.bin/*
+frontend/package-lock.json
+frontend/package.json
