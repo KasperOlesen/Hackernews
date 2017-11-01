@@ -10,9 +10,10 @@ angular.module('myApp.newStoryView', ['ngRoute'])
                 });
             }])
 
-        .controller("newStoryViewCtrl", function ($scope, $http) {
+        .controller("newStoryViewCtrl", function ($scope, $rootScope, $http) {
           $scope.story = {}
           $scope.save  = function () {
-            $scope.story.author = "Emil"
+            $scope.story.author = $rootScope.user.username;
+            console.log($scope.story);
           };
         });

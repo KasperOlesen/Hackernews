@@ -69,7 +69,7 @@ angular.module('myApp.security', [])
                         if ($scope.user.username === "admin" && $scope.user.password === "password") {
                           $window.sessionStorage.currentUser = JSON.stringify($scope.user);
                           $rootScope.isAuthenticated = true;
-                          $rootScope.username = $scope.user.username;
+                          $rootScope.user = $scope.user;
                           $scope.isAdmin = true;
                           $scope.error = null;
                           $location.path("#/view1");
@@ -87,9 +87,9 @@ angular.module('myApp.security', [])
             $rootScope.logout = function () {
                 delete $window.sessionStorage.currentUser;
                 $rootScope.isAuthenticated = false;
+                $rootScope.user = {};
                 $scope.isAdmin = false;
                 $scope.isUser = false;
-                delete $window.sessionStorage.token;
                 $location.path("#/view1");
             };
 
@@ -109,7 +109,7 @@ angular.module('myApp.security', [])
                 if (token) {
                   var profile = JSON.parse(token);
                   $rootScope.isAuthenticated = true;
-                  $rootScope.username = profile.username;
+                  $rootScope.user = profile;
                   $scope.isAdmin = true;
                   $scope.error = null;
                 }

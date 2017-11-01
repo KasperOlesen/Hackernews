@@ -33,7 +33,7 @@ run(["$rootScope", "$http", "$location", function($rootScope, $http, $location, 
             });*/
 
         $rootScope.isAuthenticated = false;
-        $rootScope.username = "";
+        $rootScope.user = "";
         // redirect to login page if not logged in and trying to access a restricted page
         $rootScope.$on('$locationChangeStart', function () {
             var publicPages = ['/view1', '/view3','/loginView','/view5','/view7'];
