@@ -11,7 +11,7 @@ angular.module('myApp', [
   'myApp.view3',
   'myApp.loginView',
   'myApp.view5',
-  'myApp.newStoryView',
+  'myApp.view6',
   'myApp.view7',
   'myApp.filters',
   'myApp.directives',
@@ -39,7 +39,7 @@ run(["$rootScope", "$http", "$location", function($rootScope, $http, $location, 
             var publicPages = ['/view1', '/view3','/loginView','/view5','/view7'];
             var restrictedPage = publicPages.indexOf($location.path()) === -1;
             if (restrictedPage && $rootScope.isAuthenticated === false) {
-                $location.path('/loginView');
+                $location.path('/view1');
             }
         });
     }]);
