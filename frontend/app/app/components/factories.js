@@ -122,8 +122,13 @@ angular.module('myApp.factories', [])
                     return postInfoDetails;
                 };
 
-                dataFactory.addNewComment = function (comment) {
-                    postInfoDetails.comments += comment;
+                dataFactory.addNewComment = function (comment) {                 
+                    postInfo.forEach(function (postInfo) {
+                        if (comment.post_parent === postInfo.hanesst_id) {
+                            postInfo.comments.push(comment);
+                        };
+                    });
+//                    return $http.post(urlBasePost + "/" + comment);
                 };
 
                 dataFactory.addPost = function (post) {

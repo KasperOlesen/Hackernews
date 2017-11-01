@@ -11,10 +11,11 @@ angular.module('myApp.view6', ['ngRoute'])
                 });
             }])
 
-        .controller("View6Ctrl", ["$scope", "dataFactory", "$window", function ($scope, dataFactory, $window) {
+        .controller("View6Ctrl", ["$scope", "dataFactory", "$window", "$rootScope", function ($scope, dataFactory, $window, $rootScope) {
+
 
             var newPost = {};
-            newPost.username = "mockUser1";
+            newPost.username = $rootScope.user.username;
             newPost.post_type = "story";
             newPost.pwd_hash = "mockPwdHash";
             newPost.post_parent = "";

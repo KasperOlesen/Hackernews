@@ -25,19 +25,26 @@
     <!--
         ADD NEW COMMENT TO POST
     -->
-    <div class="postTitle">
-        <span>{{post_title}}</span>
-    </div>    
-    <div class="postTitle">
-        <span>{{post_title}}</span>
+<div ng-show="isAuthenticated" class="container">
+    <div class="col-md-5">
+        <div class="form-area">
+            <form name="commentForm" role="form">
+                <div class="form-group">
+                    <textarea class="form-control" rows="5" id="postText" ng-model="post_text" placeholder="Write a new comment..."></textarea>
+                </div>
+                <button type="button" id="submit" name="submit" ng-click="submitComment()" class="btn btn-primary">Submit comment</button>
+            </form>
+        </div>
     </div>
-
-<div class="view7container" ng-repeat="comment in comments| orderBy: '-post_karma'">
-
-
+</div>
+    
+    
     <!--
         THE LIST OF COMMENTS TO THE POST
     -->
+    <h3>Comments:</h3>
+<div class="view7container" ng-repeat="comment in comments| orderBy: '-post_karma'">
+
     <div class="view7vote">
         <a href="" ng-click='upvoteComment(comment)' class="glyphicon glyphicon-arrow-up" title="Upvote"></a>
         <a href="" ng-click='downvoteComment(comment)' class="glyphicon glyphicon-arrow-down" title="Downvote"></a>
@@ -49,7 +56,7 @@
         //
         <span class="commentKarma"> <b> {{comment.post_karma}} points </b> </span>
         //
-        <span class="commentTimestamp">Added x hours ago</span>
+        <span class="commentTimestamp">{{comment.timeStamp}}</span>
 
     </div>
 

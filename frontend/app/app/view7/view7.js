@@ -11,7 +11,7 @@ angular.module('myApp.view7', ['ngRoute'])
                 });
             }])
 
-        .controller("View7Ctrl", ["$scope", "dataFactory", function ($scope, dataFactory) {
+        .controller("View7Ctrl", ["$scope", "dataFactory", "$rootScope", function ($scope, dataFactory, $rootScope) {
 
                 var post = dataFactory.getPostDetails();
                 $scope.post = post.data;
@@ -30,12 +30,22 @@ angular.module('myApp.view7', ['ngRoute'])
                     dataFactory.downvoteComment(comment);
                 };
 
-                $scope.newComment = function () {
+                $scope.submitComment = function () {
+
                     var newComment = {};
-                    newPost.username = "mockUser1";
-                    newPost.pwd_hash = "mockPwdHash";
-                    newPost.post_parent = "";
-                    newPost.post_karma = 0;
+                    newComment.username = $rootScope.user.username;
+                    newComment.post_type = "comment";
+                    newComment.pwd_hash = "mockPwdHash";
+                    newComment.post_parent = post.data['hanesst_id'];
+                    newComment.post_karma = 0;
+                    newComment.post_title = "";
+                    newComment.post_url = "";
+                    newComment.post_text = $scope.post_text;
+                    newComment.hanesst_id = 0;
+                    newComment.timeStamp = dataFactory.getDateTime();
+                    dataFactory.addNewComment(newComment);
+                    
+                    $scope.post_text = "";
                 };
 
             }]);
