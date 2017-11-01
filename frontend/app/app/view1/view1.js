@@ -33,11 +33,11 @@ angular.module('myApp.view1', ['ngRoute'])
 
                 };
 
-                $scope.upvotePost = function (post) {
-                    dataFactory.upvotePost(post);
+                $scope.upvote = function (post) {
+                    dataFactory.upvote(post);
                 };
-                $scope.downvotePost = function (post) {
-                    dataFactory.downvotePost(post);
+                $scope.downvote = function (post) {
+                    dataFactory.downvote(post);
                 };
 
             }]);

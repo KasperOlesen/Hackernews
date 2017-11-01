@@ -7,9 +7,9 @@
         THE POST SECTION
     -->
     <div class="postKarma">
-        <a href="" ng-click='upvotePost(post)'><div class="glyphicon glyphicon-triangle-top"></div></a>
+        <a ng-show="isAuthenticated" href="" ng-click='upvote(post)'><div class="glyphicon glyphicon-triangle-top"></div></a>
         <div>{{post.post_karma}}</div>
-        <a href="" ng-click='downvotePost(post)'><div class="glyphicon glyphicon-triangle-bottom"></div></a>
+        <a ng-show="isAuthenticated" href="" ng-click='downvote(post)'><div class="glyphicon glyphicon-triangle-bottom"></div></a>
     </div>
     <div class="postTitle">
         <span>{{post.post_title}}</span>
@@ -46,8 +46,8 @@
 <div class="view7container" ng-repeat="comment in comments| orderBy: '-post_karma'">
 
     <div class="view7vote">
-        <a href="" ng-click='upvoteComment(comment)' class="glyphicon glyphicon-arrow-up" title="Upvote"></a>
-        <a href="" ng-click='downvoteComment(comment)' class="glyphicon glyphicon-arrow-down" title="Downvote"></a>
+        <a ng-show="isAuthenticated" href="" ng-click='upvote(comment)' class="glyphicon glyphicon-arrow-up" title="Upvote"></a>
+        <a ng-show="isAuthenticated" href="" ng-click='downvote(comment)' class="glyphicon glyphicon-arrow-down" title="Downvote"></a>
     </div>
 
     <div class="author">

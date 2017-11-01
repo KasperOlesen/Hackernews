@@ -17,17 +17,11 @@ angular.module('myApp.view7', ['ngRoute'])
                 $scope.post = post.data;
                 $scope.comments = post.data['comments'];
 
-                $scope.upvotePost = function (post) {
-                    dataFactory.upvotePost(post);
+                $scope.upvote = function (post) {
+                    dataFactory.upvote(post);
                 };
-                $scope.downvotePost = function (post) {
-                    dataFactory.downvotePost(post);
-                };
-                $scope.upvoteComment = function (comment) {
-                    dataFactory.upvoteComment(comment);
-                };
-                $scope.downvoteComment = function (comment) {
-                    dataFactory.downvoteComment(comment);
+                $scope.downvote = function (post) {
+                    dataFactory.downvote(post);
                 };
 
                 $scope.submitComment = function () {

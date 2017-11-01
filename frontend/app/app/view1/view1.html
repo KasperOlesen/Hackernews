@@ -9,8 +9,8 @@
         </div>
 
         <div class="vote">
-            <a href="" ng-click='upvotePost(post)' class="glyphicon glyphicon-arrow-up"></a>
-            <a href="" ng-click='downvotePost(post)' class="glyphicon glyphicon-arrow-down"></a>
+            <a ng-show="isAuthenticated" href="" ng-click='upvote(post)' class="glyphicon glyphicon-arrow-up"></a>
+            <a ng-show="isAuthenticated" href="" ng-click='downvote(post)' class="glyphicon glyphicon-arrow-down"></a>
         </div>
 
         <div class="title" >

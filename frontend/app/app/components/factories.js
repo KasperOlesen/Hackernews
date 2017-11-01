@@ -136,7 +136,7 @@ angular.module('myApp.factories', [])
                     return $http.post(urlBasePost + "/" + post);
                 };
 
-                dataFactory.upvotePost = function (post) {
+                dataFactory.upvote = function (post) {
                     if (post.upvoted) {
                         post.post_karma--;
                         post.upvoted = false;
@@ -150,7 +150,7 @@ angular.module('myApp.factories', [])
                     }
                     return post;
                 };
-                dataFactory.downvotePost = function (post) {
+                dataFactory.downvote = function (post) {
                     if (post.downvoted) {
                         post.post_karma++;
                         post.downvoted = false;
@@ -163,35 +163,6 @@ angular.module('myApp.factories', [])
                         post.downvoted = true;
                     }
                     return post;
-                };
-
-                dataFactory.upvoteComment = function (comment) {
-                    if (comment.upvoted) {
-                        comment.comment_karma--;
-                        comment.upvoted = false;
-                    } else if (comment.downvoted) {
-                        comment.downvoted = false;
-                        comment.comment_karma = comment.comment_karma + 2;
-                        comment.upvoted = true;
-                    } else {
-                        comment.comment_karma++;
-                        comment.upvoted = true;
-                    }
-                    return comment;
-                };
-                dataFactory.downvoteComment = function (comment) {
-                    if (comment.downvoted) {
-                        comment.comment_karma++;
-                        comment.downvoted = false;
-                    } else if (comment.upvoted) {
-                        comment.upvoted = false;
-                        comment.comment_karma = comment.comment_karma - 2;
-                        comment.downvoted = true;
-                    } else {
-                        comment.comment_karma--;
-                        comment.downvoted = true;
-                    }
-                    return comment;
                 };
 
 //                dataFactory.newHanesstId = function () {
