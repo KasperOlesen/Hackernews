@@ -2,15 +2,15 @@
 <h1 style="color:#105cb6">View1</h1>
 <br>
 <br>
-<div class="view1container" ng-repeat="post in posts">
+<div class="view1container" ng-repeat="post in posts | orderBy: '-post_karma'">
 
         <div class="post">
-            <span>1</span>
+            <span>{{$index+1}}</span>
         </div>
 
         <div class="vote">
-            <a href="" class="glyphicon glyphicon-arrow-up"></a>
-            <a href="" class="glyphicon glyphicon-arrow-down"></a>
+            <a href="" ng-click='upvotePost(post)' class="glyphicon glyphicon-arrow-up"></a>
+            <a href="" ng-click='downvotePost(post)' class="glyphicon glyphicon-arrow-down"></a>
         </div>
 
         <div class="title" >
@@ -20,10 +20,11 @@
 
         <div class="stats" >
            <span class="">
-                <a href="">123</a>
+               <b>{{post.post_karma}} points </b>
            </span>
+            //
            <span class="">
-                points // submitted by
+                 submitted by
            </span>
            <span class="">
                 <a href="">{{post.username}}</a>
@@ -34,7 +35,7 @@
            </span>
            //
            <span class="">
-               <a href="" ng-click="viewPost(post.hanesst_id)">{{post.commentCount}} comments</a>
+               <a href="" ng-click="viewPost(post)">{{post.commentCount}} comments</a>
            </span>
         </div>
     </div>

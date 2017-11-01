@@ -26,10 +26,19 @@ angular.module('myApp.view1', ['ngRoute'])
 
                 $scope.posts = dataFactory.getAllPosts();
 
-                $scope.viewPost = function (hanesst_id) {
-                    dataFactory.setComments(hanesst_id);
+                $scope.viewPost = function (post) {
+                    dataFactory.setPostDetails(post);
                     $window.location.href = '#/view7';
 
+                };
+
+                $scope.upvotePost = function (post) {
+                    console.log("upvoting");
+                    dataFactory.upvotePost(post);
+                };
+                $scope.downvotePost = function (post) {
+                    console.log("downvoting");
+                    dataFactory.downvotePost(post);
                 };
 
             }]);

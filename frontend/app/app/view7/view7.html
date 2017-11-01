@@ -5,22 +5,22 @@
 <div class="view7PostContainer" >
 
     <div class="postKarma">
-        <a href=""><div class="glyphicon glyphicon-triangle-top"></div></a>
-        <div>999</div>
-        <a href=""><div class="glyphicon glyphicon-triangle-bottom"></div></a>
+        <a href="" ng-click='upvotePost(post)'><div class="glyphicon glyphicon-triangle-top"></div></a>
+        <div>{{post.post_karma}}</div>
+        <a href="" ng-click='downvotePost(post)'><div class="glyphicon glyphicon-triangle-bottom"></div></a>
     </div>
     <div class="postTitle">
-        <span>{{postInfo.post_title}}</span>
+        <span>{{post.post_title}}</span>
     </div>
     <div class="postTimestamp">
-        <span>Added x hours ago by {{postInfo.username}}</span>
+        <span>Added x hours ago by {{post.username}}</span>
     </div>
     <div class="postMsg">
-        <span>{{postInfo.post_text}}</span>
+        <span>{{post.post_text}}</span>
     </div>
 </div>
 <hr>
-<div class="view7container" ng-repeat="comment in commentList">
+<div class="view7container" ng-repeat="comment in commentList | orderBy: '-comment_karma'">
 
 <!--
     <div class="post">
@@ -28,15 +28,19 @@
     </div>
 -->
     <div class="view7vote">
-        <a href="" class="glyphicon glyphicon-arrow-up" title="Upvote"></a>
-        <a href="" class="glyphicon glyphicon-arrow-down" title="Downvote"></a>
+        <a href="" ng-click='upvoteComment(comment)' class="glyphicon glyphicon-arrow-up" title="Upvote"></a>
+        <a href="" ng-click='downvoteComment(comment)' class="glyphicon glyphicon-arrow-down" title="Downvote"></a>
     </div>
 
 
     <div class="author">
         <a href="" title="Hide comment">&#10005;</a>&nbsp
         <span>{{comment.author}}</span>
+        //
+        <span class="commentKarma"> <b> {{comment.comment_karma}} points </b> </span>
+        //
         <span class="commentTimestamp">Added x hours ago</span>
+        
     </div>
 
     <div class="commentary">

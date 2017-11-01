@@ -83,11 +83,11 @@ ol.list > li:before {
 }
 
 .stats span{
-    
+
 }
 
 .stats a{
-    
+
 }
 
 
@@ -130,6 +130,11 @@ ol.list > li:before {
 }
 
 .commentTimestamp{
+    font-weight: 300; 
+    font-size: 8pt;
+
+}
+.commentKarma{
     font-weight: 300; 
     font-size: 8pt;
 }
