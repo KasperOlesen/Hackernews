@@ -8,7 +8,7 @@ angular.module('myApp.factories', [])
                 var urlBaseComment = 'api/comment';
                 var dataFactory = {};
                 var postInfo = [];
-                var commentCount = 0;
+                var commentInfo = [];
 //                dataFactory.addItem = function (item) {
 //                    basePrice = (item.totalPrice / item.numberOfSeats);
 //                    flightInfo.push(item);
@@ -45,27 +45,47 @@ angular.module('myApp.factories', [])
                     "hanesst_id": 243,
                     "post_text": "Posttext of post 3"};
 
-                var comment1 = {"post_id": "325243",
+                var comment1 = {"post_id": 325243,
                     "comment_id": "c352456",
                     "comment_parent_id": "",
                     "text": "This is a comment test",
                     "author": "kirsten"
                 };
 
-                var comment2 = {"post_id": "325243",
+                var comment2 = {"post_id": 325243,
                     "comment_id": "c2535",
                     "comment_parent_id": "",
                     "text": "This is also a comment test2325423",
                     "author": "Henzaow"
                 };
 
-                var comment3 = {"post_id": "325243",
+                var comment3 = {"post_id": 325243,
+                    "comment_id": "c28536",
+                    "comment_parent_id": "",
+                    "text": "This the last comment test",
+                    "author": "gunnar"};
+                
+                var comment4 = {"post_id": 243,
+                    "comment_id": "c352456",
+                    "comment_parent_id": "",
+                    "text": "This is a comment test",
+                    "author": "kirsten"
+                };
+
+                var comment5 = {"post_id": 31678,
+                    "comment_id": "c2535",
+                    "comment_parent_id": "",
+                    "text": "This is also a comment test2325423",
+                    "author": "Henzaow"
+                };
+
+                var comment6 = {"post_id": 31678,
                     "comment_id": "c28536",
                     "comment_parent_id": "",
                     "text": "This the last comment test",
                     "author": "gunnar"};
 
-
+                commentInfo.push(comment1, comment2, comment3, comment4, comment5, comment6);
 
 
 
@@ -73,16 +93,34 @@ angular.module('myApp.factories', [])
 //                    postInfo.push($http.get(urlBasePost));
                     postInfo.push(post1, post2, post3);
 
-                    dataFactory.getAllComments("325243");
-                    dataFactory.commentCount();
+                    postInfo.forEach(function(postInfo){
+                       dataFactory.getAllComments(postInfo.hanesst_id); 
+                    });
+                    
                     return postInfo;
                 };
 
-                dataFactory.getAllComments = function () {
-                    var commentInfo = [];
+                dataFactory.getComments = function (postId) {
+                    var comments = [];
+                    commentInfo.forEach(function (commentInfo, i) {  
+                        if (commentInfo.post_id === postId) {
+                            comments.push(commentInfo);
+                        };
+                    });  
+                    postInfo.comments = comments;
+                    return postInfo;
+                };
+
+                dataFactory.getAllComments = function (postId) {
+                    postInfo.forEach(function (postInfo) {  
+                        if (postInfo.hanesst_id === postId) {
+                            postInfo.commentCount = dataFactory.getCommentCount(postId);
+                        }
+                        
+
+                    });
+                    console.log(postInfo);
 //                    commentInfo.push($http.get(urlBaseComment + "/" + info));
-                    commentInfo.push(comment1, comment2, comment3);
-                    return commentInfo;
                 };
 
                 dataFactory.addPost = function (info) {
@@ -92,17 +130,17 @@ angular.module('myApp.factories', [])
                 dataFactory.addComment = function (info) {
                     return $http.post(urlBaseComment + "/create/" + info);
                 };
-
-                dataFactory.commentCount = function () {
-                    console.log(postInfo);
-                    console.log(commentInfo);
-                    postInfo.forEach(function (postInfo) {
-                        postInfo.commentCount = 0;
-                        postInfo.commentCount = commentInfo.length;
-
+                dataFactory.getCommentCount = function (postId) {
+                    var commentCount = 0;
+                    var postComments = [];
+                    commentInfo.forEach(function (commentInfo) {
+                        if (commentInfo.post_id === postId) {
+                            postComments.push(commentInfo);
+                            commentCount++;
+                        }
                     });
+                    return commentCount;
                 };
-
                 return dataFactory;
             }]);
 

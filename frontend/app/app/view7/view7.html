@@ -1,30 +1,51 @@
-<br>
-<h1 style="color:#105cb6">View6</h1>
+<h1 style="color:#105cb6">View7</h1>
 <br>
 <br>
 
-<div class="storyContainer">
+<div class="view7PostContainer" >
 
+    <div class="postKarma">
+        <a href=""><div class="glyphicon glyphicon-triangle-top"></div></a>
+        <div>999</div>
+        <a href=""><div class="glyphicon glyphicon-triangle-bottom"></div></a>
+    </div>
+    <div class="postTitle">
+        <span>{{postInfo.post_title}}</span>
+    </div>
+    <div class="postTimestamp">
+        <span>Added x hours ago by {{postInfo.username}}</span>
+    </div>
+    <div class="postMsg">
+        <span>{{postInfo.post_text}}</span>
+    </div>
 </div>
 <hr>
-<div class="view1container" ng-repeat="comment in commentList">
+<div class="view7container" ng-repeat="comment in commentList">
 
+<!--
     <div class="post">
         <span>1</span>
     </div>
-
-    <div class="vote">
-        <a href="" class="glyphicon glyphicon-arrow-up"></a>
-        <a href="" class="glyphicon glyphicon-arrow-down"></a>
+-->
+    <div class="view7vote">
+        <a href="" class="glyphicon glyphicon-arrow-up" title="Upvote"></a>
+        <a href="" class="glyphicon glyphicon-arrow-down" title="Downvote"></a>
     </div>
 
-    <div class="title" >
+
+    <div class="author">
+        <a href="" title="Hide comment">&#10005;</a>&nbsp
         <span>{{comment.author}}</span>
+        <span class="commentTimestamp">Added x hours ago</span>
     </div>
 
-    <div class="stats" >
+    <div class="commentary">
         <span class="">
             {{comment.text}}
         </span>
+    </div>
+
+    <div class="reply">
+        <a href="" title="Reply to this comment">Reply</a>
     </div>
 </div>

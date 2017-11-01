@@ -91,4 +91,111 @@ ol.list > li:before {
 }
 
 
+/*          VIEW7          */
+
+.view7PostContainer{
+    width: 100%; 
+    height: 200px; 
+    background-color: #eee;
+}
+
+.postKarma{
+    width: 9%; 
+    height: 200px; 
+    float: left; 
+    text-align: center; 
+    line-height: 4.8; 
+    background-color: #f9f9f9; 
+    margin-right: 1%;
+}
+
+.postTitle{
+    width: 90%; 
+    float: left; 
+    font-weight: 500; 
+    font-size: 12pt;
+}
+
+.postTimestamp{
+    width: 90%; 
+    float: left; 
+    font-weight: 300; 
+    font-size: 8pt;
+}
+
+.postMsg{
+    width: 90%; 
+    float: left; 
+    margin-top: 20px;
+}
+
+.commentTimestamp{
+    font-weight: 300; 
+    font-size: 8pt;
+}
+.view7container{
+    width: 100%; 
+    min-height: 120px; 
+    padding: 3px;
+    margin-top: 7px;
+    background-color: #efefef; 
+}
+
+.commentary{
+    width: 96.5%; 
+    min-height: 70px; 
+    float: left;
+}
+
+.commentary span{
+    line-height: 2.8;
+}
+
+.view7vote{
+    width: 2%; 
+    height: 100px; 
+    float: left;
+}
+
+.author{
+    width: 96.5%; 
+    height: 20px; 
+    float: left; 
+    padding-left: 0.5%;
+    font-size: 10pt;
+    font-weight: 500;
+}
+
+.author span{
+    overflow: hidden;
+}
+
+.author a{
+    color: #999;
+}
+
+.view7stats{
+    width: 96.5%; 
+    height: 17px; 
+    background-color: #efefef; 
+    float: left; 
+    font-size: 8pt; 
+    padding-left: 0.5%;
+}
+
+.view7stats span{
+
+}
+
+.view7stats a{
+
+}
+.reply{
+    width: 96.5%; 
+    height: 40px; 
+    float: left; 
+
+}
+
+
 

@@ -13,12 +13,7 @@ angular.module('myApp.view7', ['ngRoute'])
 
         .controller("View7Ctrl", ["$scope", "dataFactory", function ($scope, dataFactory) {
 
-//                 $scope.post = dataFactory.getPost(post_id);
-
-
-
-                $scope.commentList = dataFactory.getAllComments();
-                $scope.postInfo = {"username": "Tove",
+                var postTemp = {"username": "Tove",
                     "post_type": "story",
                     "pwd_hash": "ublamgata",
                     "post_title": "This is a title for test post 1",
@@ -26,8 +21,8 @@ angular.module('myApp.view7', ['ngRoute'])
                     "post_parent": -2,
                     "hanesst_id": 325243,
                     "post_text": "Posttext of post 1"};
-
-
-
+                var comments = dataFactory.getComments(postTemp.hanesst_id).comments;
+                $scope.postInfo = postTemp;
+                $scope.commentList = comments;
 
             }]);
