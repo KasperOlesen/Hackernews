@@ -11,7 +11,7 @@ angular.module('myApp', [
   'myApp.view3',
   'myApp.loginView',
   'myApp.view5',
-  'myApp.view6',
+  'myApp.newStoryView',
   'myApp.view7',
   'myApp.filters',
   'myApp.directives',
@@ -33,6 +33,7 @@ run(["$rootScope", "$http", "$location", function($rootScope, $http, $location, 
             });*/
 
         $rootScope.isAuthenticated = false;
+        $rootScope.username = "";
         // redirect to login page if not logged in and trying to access a restricted page
         $rootScope.$on('$locationChangeStart', function () {
             var publicPages = ['/view1', '/view3','/loginView','/view5','/view7'];
