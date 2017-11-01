@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('myApp.view2', ['ngRoute'])
+angular.module('myApp.profileView', ['ngRoute'])
 
         .config(['$routeProvider', function ($routeProvider) {
-            $routeProvider.when('/view2', {
-              templateUrl: 'app/view2/view2.html',
-              controller: 'View2Ctrl'
+            $routeProvider.when('/profileView', {
+              templateUrl: 'app/profileView/profileView.html',
+              controller: 'profileViewCtrl'
             });
           }])
 
-        .controller('View2Ctrl', function ($http, $scope, FakeFactory) {
+        .controller('profileViewCtrl', function ($http, $scope, FakeFactory) {
           $scope.person = {};
           $scope.pwd1;
           $scope.pwd2;
