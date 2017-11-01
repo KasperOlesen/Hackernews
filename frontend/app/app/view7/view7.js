@@ -15,7 +15,7 @@ angular.module('myApp.view7', ['ngRoute'])
 
                 var post = dataFactory.getPostDetails();
                 $scope.post = post.data;
-                $scope.commentList = post.comments;
+                $scope.comments = post.data['comments'];
 
                 $scope.upvotePost = function (post) {
                     dataFactory.upvotePost(post);
@@ -28,6 +28,14 @@ angular.module('myApp.view7', ['ngRoute'])
                 };
                 $scope.downvoteComment = function (comment) {
                     dataFactory.downvoteComment(comment);
+                };
+
+                $scope.newComment = function () {
+                    var newComment = {};
+                    newPost.username = "mockUser1";
+                    newPost.pwd_hash = "mockPwdHash";
+                    newPost.post_parent = "";
+                    newPost.post_karma = 0;
                 };
 
             }]);

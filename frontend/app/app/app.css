@@ -5,7 +5,7 @@ ol.list {
     padding: 0;  
     counter-reset: li-counter;
 }
-ol.list > li{
+ol.list > li {
     position: relative;
     margin-bottom: 10px;
     padding-left: 0.5em;
@@ -31,33 +31,37 @@ ol.list > li:before {
 
 
 
-.loginBox{
+.loginBox {
     margin-bottom: 10px;    
 }
 
-.view1container{
+.view1container {
     width: 100%; 
     height: 40px; 
     margin: 3px;
 }
 
-.post{
+.post {
     width: 1%; 
     height: 40px; 
     float: left;   
 }
 
-.post span{
+.post span {
     line-height: 2.8;
 }
 
-.vote{
+.vote {
     width: 2%; 
     height: 40px; 
     float: left;
 }
 
-.title{
+.voted {
+    background-color: green;
+}
+
+.title {
     width: 96.5%; 
     height: 23px; 
     background-color: #efefef; 
@@ -65,15 +69,15 @@ ol.list > li:before {
     padding-left: 0.5%;
 }
 
-.title span{
+.title span {
     overflow: hidden;
 }
 
-.title a{
+.title a {
     color: #aaa;
 }
 
-.stats{
+.stats {
     width: 96.5%; 
     height: 17px; 
     background-color: #efefef; 
@@ -82,63 +86,72 @@ ol.list > li:before {
     padding-left: 0.5%;
 }
 
-.stats span{
+.stats span {
 
 }
 
-.stats a{
+.stats a {
 
 }
 
 
 /*          VIEW7          */
 
-.view7PostContainer{
-    width: 100%; 
+.view7PostContainer {
+    width: 100%;  
     height: 200px; 
     background-color: #eee;
 }
 
-.postKarma{
+.postKarma {
     width: 9%; 
     height: 200px; 
     float: left; 
     text-align: center; 
-    line-height: 4.8; 
+    line-height: 3; 
     background-color: #f9f9f9; 
     margin-right: 1%;
 }
 
-.postTitle{
+.postKarma a {
+    font-size: 28px;
+}
+
+
+.postKarma a:focus {
+    background-color: green;
+}
+
+.postTitle {
     width: 90%; 
     float: left; 
     font-weight: 500; 
     font-size: 12pt;
 }
 
-.postTimestamp{
+.postTimestamp { 
     width: 90%; 
     float: left; 
     font-weight: 300; 
     font-size: 8pt;
 }
 
-.postMsg{
+.postMsg {
     width: 90%; 
     float: left; 
     margin-top: 20px;
 }
 
-.commentTimestamp{
+.commentTimestamp {
     font-weight: 300; 
     font-size: 8pt;
 
 }
-.commentKarma{
+.commentKarma {
     font-weight: 300; 
     font-size: 8pt;
 }
-.view7container{
+.view7container {
     width: 100%; 
     min-height: 120px; 
     padding: 3px;
@@ -146,23 +159,23 @@ ol.list > li:before {
     background-color: #efefef; 
 }
 
-.commentary{
+.commentary {
     width: 96.5%; 
     min-height: 70px; 
     float: left;
 }
 
-.commentary span{
+.commentary span {
     line-height: 2.8;
 }
 
-.view7vote{
+.view7vote {
     width: 2%; 
     height: 100px; 
     float: left;
 }
 
-.author{
+.author {
     width: 96.5%; 
     height: 20px; 
     float: left; 
@@ -171,15 +184,15 @@ ol.list > li:before {
     font-weight: 500;
 }
 
-.author span{
+.author span {
     overflow: hidden;
 }
 
-.author a{
+.author a {
     color: #999;
 }
 
-.view7stats{
+.view7stats {
     width: 96.5%; 
     height: 17px; 
     background-color: #efefef; 
@@ -188,14 +201,14 @@ ol.list > li:before {
     padding-left: 0.5%;
 }
 
-.view7stats span{
+.view7stats span {
 
 }
 
-.view7stats a{
+.view7stats a {
 
 }
-.reply{
+.reply {
     width: 96.5%; 
     height: 40px; 
     float: left; 

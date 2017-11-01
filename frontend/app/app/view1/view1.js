@@ -25,6 +25,7 @@ angular.module('myApp.view1', ['ngRoute'])
 //        $scope.getCommentcount = function ()
 
                 $scope.posts = dataFactory.getAllPosts();
+                
 
                 $scope.viewPost = function (post) {
                     dataFactory.setPostDetails(post);
@@ -33,11 +34,9 @@ angular.module('myApp.view1', ['ngRoute'])
                 };
 
                 $scope.upvotePost = function (post) {
-                    console.log("upvoting");
                     dataFactory.upvotePost(post);
                 };
                 $scope.downvotePost = function (post) {
-                    console.log("downvoting");
                     dataFactory.downvotePost(post);
                 };
 

@@ -31,11 +31,11 @@
            </span>
            //
            <span class="">
-                <a href="">Timestamp</a>
+                {{post.timeStamp}}
            </span>
            //
            <span class="">
-               <a href="" ng-click="viewPost(post)">{{post.commentCount}} comments</a>
+               <a href="" ng-click="viewPost(post)">{{post.comments.length}} comments</a>
            </span>
         </div>
     </div>

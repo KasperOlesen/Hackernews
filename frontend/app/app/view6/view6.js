@@ -11,10 +11,23 @@ angular.module('myApp.view6', ['ngRoute'])
                 });
             }])
 
-        .controller("View6Ctrl", function ($scope, $http) {
-          $scope.story = {}
-          $scope.save  = function () {
-            $scope.story.author = "Emil"
-          };
-        });
+        .controller("View6Ctrl", ["$scope", "dataFactory", "$window", function ($scope, dataFactory, $window) {
+
+            var newPost = {};
+            newPost.username = "mockUser1";
+            newPost.post_type = "story";
+            newPost.pwd_hash = "mockPwdHash";
+            newPost.post_parent = "";
+            newPost.post_karma = 0;
+
+            $scope.submitPost = function () {
+                newPost.post_title = $scope.post_title;
+                newPost.post_url = $scope.post_url;
+                newPost.post_text = $scope.post_text;
+                newPost.hanesst_id = 0;
+                newPost.timeStamp = dataFactory.getDateTime();
+                dataFactory.addPost(newPost);
+                $window.location.href = '#/view1';
+            };
+        }]);
 

@@ -3,49 +3,28 @@
 <br>
 <br>
 
-<div class="storyContainer">
-
-</div>
-<hr>
-<div class="view1container" ng-repeat="comment in commentList">
-
-    <div class="post">
-        <span>1</span>
-    </div>
-
-    <div class="vote">
-        <a href="" class="glyphicon glyphicon-arrow-up"></a>
-        <a href="" class="glyphicon glyphicon-arrow-down"></a>
-    </div>
-
-    <div class="title" >
-        <span>{{comment.author}}</span>
-    </div>
-
-    <div class="stats" >
-        <span class="">
-            {{comment.text}}
-        </span>
-    </div>
-</div>
 <div class="container">
-<div class="col-md-5">
-    <div class="form-area">
-        <form role="form">
-        <br style="clear:both">
-                    <h3 style="margin-bottom: 25px; text-align: center;">New story</h3>
-    				<div class="form-group">
-            <label>Title</label>
-						<input type="text" class="form-control" id="Title" ng-model="story.Title" placeholder="Title" required>
-					</div>
-					<div class="form-group">
-            <label>Website</label>
-						<input type="text" class="form-control" id="Website" ng-model="story.Website" placeholder="Website" required>
-					</div>
+    <div class="col-md-5">
+        <div class="form-area">
+            <form role="form">
+                <br style="clear:both">
+                <h3 style="margin-bottom: 25px; text-align: center;">New post</h3>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control" id="title" ng-model="post_title" placeholder="Title" required>
+                </div>
+                <div class="form-group">
+                    <label>Website</label>
+                    <input type="text" class="form-control" id="url" ng-model="post_url" placeholder="Website">
+                </div>
+                <div class="form-group">
+                    <label>Text</label>
+                    <textarea class="form-control" rows="5" id="postText" ng-model="post_text" placeholder="Write something..."></textarea>
+                </div>
 
-        <button type="button" id="submit" name="submit" ng-click="save()" class="btn btn-primary pull-right">Submit story</button>
-        </form>
+                <button type="button" id="submit" name="submit" ng-click="submitPost()" class="btn btn-primary pull-right">Submit story</button>
+            </form>
+        </div>
     </div>
 </div>
-</div>
->>>>>>> 42833106c4b8d9a97ad4d9e439ef732ccff3ed9f
+
