@@ -29,22 +29,20 @@ angular.module('myApp.security', [])
             };
 
 
-            $scope.username = "";
-            $scope.isAuthenticated = false;
             $scope.isAdmin = false;
             $scope.isUser = false;
             $scope.message = '';
             $scope.error = null;
 
             $scope.login = function () {
-                $http
+                /*$http
                         .post('api/login', $scope.user)
                         .success(function (data, status, headers, config) {
                             $window.sessionStorage.token = data.token;
-                            $scope.isAuthenticated = true;
+                            $rootScope.isAuthenticated = true;
                             var encodedProfile = data.token.split('.')[1];
                             var profile = JSON.parse(url_base64_decode(encodedProfile));
-                            $scope.username = profile.username;
+                            $rootScope.username = profile.username;
                             var roles = profile.roles.split(",");
                             roles.forEach(function (role) {
                                 if (role === "Admin") {
@@ -60,38 +58,65 @@ angular.module('myApp.security', [])
                         .error(function (data, status, headers, config) {
                             // Erase the token if the user fails to log in
                             delete $window.sessionStorage.token;
-                            $scope.isAuthenticated = false;
+                            $rootScope.isAuthenticated = false;
                             $scope.isAdmin = false;
                             $scope.isUser = false;
-                            $scope.username = "";
+                            $rootScope.username = "";
                             $scope.error = data.error;
                             //$scope.logout();  //Clears an eventual error message from timeout on the inner view
-                        });
+                        });*/
+
+                        if ($scope.user.username === "admin" && $scope.user.password === "password") {
+                          $window.sessionStorage.currentUser = JSON.stringify($scope.user);
+                          $rootScope.isAuthenticated = true;
+                          $rootScope.user = $scope.user;
+                          $scope.isAdmin = true;
+                          $scope.error = null;
+                          $location.path("#/view1");
+                        };
             };
 
-            $rootScope.logout = function () {
-                $scope.isAuthenticated = false;
+            /*$rootScope.logout = function () {
+                delete $window.sessionStorage.currentUser;
+                $rootScope.isAuthenticated = false;
                 $scope.isAdmin = false;
                 $scope.isUser = false;
                 delete $window.sessionStorage.token;
+                $location.path("#/view1");
+            };*/
+            $rootScope.logout = function () {
+                delete $window.sessionStorage.currentUser;
+                $rootScope.isAuthenticated = false;
+                $rootScope.user = {};
+                $scope.isAdmin = false;
+                $scope.isUser = false;
                 $location.path("#/view1");
             };
 
             //This sets the login data from session store if user pressed F5 (You are still logged in)
             var init = function () {
-                var token = $window.sessionStorage.token;
+                /*var token = $window.sessionStorage.token;
                 if (token) {
-                    $scope.isAuthenticated = true;
+                    $rootScope.isAuthenticated = true;
                     var encodedProfile = token.split('.')[1];
                     var profile = JSON.parse(url_base64_decode(encodedProfile));
-                    $scope.username = profile.username;
+                    $rootScope.username = profile.username;
                     $scope.isAdmin = profile.role === "Admin";
                     $scope.isUser = !$scope.isAdmin;
                     $scope.error = null;
+                }*/
+                var token = $window.sessionStorage.currentUser
+                if (token) {
+                  var profile = JSON.parse(token);
+                  $rootScope.isAuthenticated = true;
+                  $rootScope.user = profile;
+                  $scope.isAdmin = true;
+                  $scope.error = null;
                 }
+
             };
 // and fire it after definition
-            init();
+            //init();
         }).
         factory('Auth', function () {
             return {
@@ -138,11 +163,3 @@ angular.module('myApp.security', [])
                 }
             };
         });
-
-
-
-
-
-
-
-

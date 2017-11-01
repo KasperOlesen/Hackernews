@@ -7,11 +7,11 @@ angular.module('myApp', [
   'ui.bootstrap',
   'myApp.security',
   'myApp.view1',
-  'myApp.view2',
+  'myApp.profileView',
   'myApp.view3',
-  'myApp.view4',
+  'myApp.loginView',
   'myApp.view5',
-  'myApp.view6',
+  'myApp.newStoryView',
   'myApp.view7',
   'myApp.filters',
   'myApp.directives',
@@ -24,4 +24,22 @@ config(['$routeProvider', function($routeProvider) {
 }]).
 config(function ($httpProvider) {
    $httpProvider.interceptors.push('authInterceptor');
-});
+}).
+run(["$rootScope", "$http", "$location", function($rootScope, $http, $location, $window) {
+
+        /*$http.get('config.json')
+            .then(function (res) {
+                server = res.data.url + ":" + res.data.port + "/";
+            });*/
+
+        $rootScope.isAuthenticated = false;
+        $rootScope.user = "";
+        // redirect to login page if not logged in and trying to access a restricted page
+        $rootScope.$on('$locationChangeStart', function () {
+            var publicPages = ['/view1', '/view3','/loginView','/view5','/view7'];
+            var restrictedPage = publicPages.indexOf($location.path()) === -1;
+            if (restrictedPage && $rootScope.isAuthenticated === false) {
+                $location.path('/loginView');
+            }
+        });
+    }]);
