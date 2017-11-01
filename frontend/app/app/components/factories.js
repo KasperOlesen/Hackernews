@@ -92,23 +92,27 @@ angular.module('myApp.factories', [])
                 dataFactory.getAllPosts = function () {
 //                    postInfo.push($http.get(urlBasePost));
                     postInfo.push(post1, post2, post3);
-
                     postInfo.forEach(function(postInfo){
                        dataFactory.getAllComments(postInfo.hanesst_id); 
-                    });
-                    
+                    });        
                     return postInfo;
                 };
 
-                dataFactory.getComments = function (postId) {
+                dataFactory.setComments = function (postId) {
                     var comments = [];
-                    commentInfo.forEach(function (commentInfo, i) {  
+                    console.log("#COUNT#");
+                    console.log(postId);
+                    commentInfo.forEach(function (commentInfo) {  
                         if (commentInfo.post_id === postId) {
                             comments.push(commentInfo);
                         };
                     });  
                     postInfo.comments = comments;
-                    return postInfo;
+                };
+                dataFactory.getComments = function () {
+                    console.log("COMMENTS");
+                    console.log(postInfo.comments);
+                    return postInfo.comments;
                 };
 
                 dataFactory.getAllComments = function (postId) {
@@ -116,10 +120,7 @@ angular.module('myApp.factories', [])
                         if (postInfo.hanesst_id === postId) {
                             postInfo.commentCount = dataFactory.getCommentCount(postId);
                         }
-                        
-
                     });
-                    console.log(postInfo);
 //                    commentInfo.push($http.get(urlBaseComment + "/" + info));
                 };
 

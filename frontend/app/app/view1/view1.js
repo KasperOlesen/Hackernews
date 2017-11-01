@@ -10,7 +10,7 @@ angular.module('myApp.view1', ['ngRoute'])
                 });
             }])
 
-        .controller('View1Ctrl', ["$scope", "dataFactory", function ($scope, dataFactory) {
+        .controller('View1Ctrl', ["$scope", "dataFactory", "$window", function ($scope, dataFactory, $window) {
                 $scope.dataFactory = dataFactory;
 //          $http({
 //            method: 'GET',
@@ -24,11 +24,13 @@ angular.module('myApp.view1', ['ngRoute'])
 
 //        $scope.getCommentcount = function ()
 
-
-
                 $scope.posts = dataFactory.getAllPosts();
 
+                $scope.viewPost = function (hanesst_id) {
+                    dataFactory.setComments(hanesst_id);
+                    $window.location.href = '#/view7';
 
+                };
 
             }]);
 
