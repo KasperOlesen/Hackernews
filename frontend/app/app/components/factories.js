@@ -8,6 +8,7 @@ angular.module('myApp.factories', [])
                 var dataFactory = {};
                 var postInfo = [];
                 var postInfoDetails = [];
+                var authorInfoDetails = {};
 
 
                 //Mock objects with test data
@@ -105,13 +106,13 @@ angular.module('myApp.factories', [])
 
                 //GET
                 //path (api/getStories)
-                //returns list with stories and a nested list 
+                //returns list with stories and a nested list
                 //of comments for each story
                 dataFactory.getAllPosts = function () {
 //                    postInfo.push($http.get(urlBasePost));
                     return postInfo;
                 };
-                
+
                 //Setting post-details when navigating story-view
                 dataFactory.setPostDetails = function (post) {
                     postInfoDetails.data = post;
@@ -122,8 +123,18 @@ angular.module('myApp.factories', [])
                     return postInfoDetails;
                 };
 
+                //Setting author-details when navigating view3
+                dataFactory.setAuthorDetails = function (author) {
+                    authorInfoDetails = author;
+                };
+
+                //Getting author-details when navigating view3
+                dataFactory.getAuthorDetails = function () {
+                    return authorInfoDetails;
+                };
+
                 //Add new comment to a story
-                dataFactory.addNewComment = function (comment) {                 
+                dataFactory.addNewComment = function (comment) {
                     postInfo.forEach(function (postInfo) {
                         if (comment.post_parent === postInfo.hanesst_id) {
                             postInfo.comments.push(comment);
@@ -186,5 +197,3 @@ angular.module('myApp.factories', [])
 
                 return dataFactory;
             }]);
-
-        

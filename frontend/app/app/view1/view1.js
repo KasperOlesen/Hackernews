@@ -25,12 +25,16 @@ angular.module('myApp.view1', ['ngRoute'])
 //        $scope.getCommentcount = function ()
 
                 $scope.posts = dataFactory.getAllPosts();
-                
+
 
                 $scope.viewPost = function (post) {
                     dataFactory.setPostDetails(post);
                     $window.location.href = '#/view7';
+                };
 
+                $scope.viewAuthor = function (post) {
+                    dataFactory.setAuthorDetails(post);
+                    $window.location.href = '#/view3';
                 };
 
                 $scope.upvote = function (post) {
@@ -45,10 +49,8 @@ angular.module('myApp.view1', ['ngRoute'])
 
 //
 //.controller('View1Ctrl', ["InfoFactory","InfoService",function(InfoFactory,InfoService) {
-//        
-//        
-//        
-//        
+//
+//
+//
+//
 //}]);
-
-

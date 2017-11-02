@@ -37,8 +37,8 @@
         </div>
     </div>
 </div>
-    
-    
+
+
     <!--
         THE LIST OF COMMENTS TO THE POST
     -->
@@ -51,8 +51,8 @@
     </div>
 
     <div class="author">
-        <a href="" title="Hide comment">&#10005;</a>&nbsp
-        <span>{{comment.username}}</span>
+        <a title="Hide comment">&#10005;</a>&nbsp
+        <a ng-click="viewAuthor(comment)" >{{comment.username}}</a>
         //
         <span class="commentKarma"> <b> {{comment.post_karma}} points </b> </span>
         //

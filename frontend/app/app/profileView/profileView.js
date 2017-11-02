@@ -22,6 +22,10 @@ angular.module('myApp.profileView', ['ngRoute'])
 
           }
 
+          $scope.loggedInUser = function(){
+            return true;
+          }
+
 
           $scope.submit = function() {
             console.log($scope.pwd1)
