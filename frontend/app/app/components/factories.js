@@ -8,22 +8,15 @@ angular.module('myApp.factories', [])
                 var dataFactory = {};
                 var postInfo = [];
                 var postInfoDetails = [];
-//                dataFactory.addItem = function (item) {
-//                    basePrice = (item.totalPrice / item.numberOfSeats);
-//                    flightInfo.push(item);
-//                    $window.location.href = '#/view6';
-//                };
 
 
-
-
-                //Dummy objects with test data
+                //Mock objects with test data
 
                 var post1 = {"username": "Tove",
                     "post_type": "story",
                     "pwd_hash": "ublamgata",
-                    "post_title": "This is a title for test post 1",
-                    "post_url": "post1LINK",
+                    "post_title": "TestPost 1",
+                    "post_url": "www.google.com",
                     "post_parent": "",
                     "hanesst_id": 325243,
                     "post_text": "Posttext of post 1",
@@ -53,8 +46,8 @@ angular.module('myApp.factories', [])
                 var post2 = {"username": "Karsten",
                     "post_type": "story",
                     "pwd_hash": "u35ytgata",
-                    "post_title": "This is a title for test post 2",
-                    "post_url": "post222LINK",
+                    "post_title": "Test Post 22",
+                    "post_url": "www.reddit.com",
                     "post_parent": "",
                     "hanesst_id": 31678,
                     "post_text": "Posttext of post 2",
@@ -79,8 +72,8 @@ angular.module('myApp.factories', [])
                 var post3 = {"username": "Bo",
                     "post_type": "story",
                     "pwd_hash": "ublsadgamgata",
-                    "post_title": "This is a title for test post 3",
-                    "post_url": "post3LINK",
+                    "post_title": "Test post 3",
+                    "post_url": "www.arto.dk",
                     "post_parent": "",
                     "hanesst_id": 243,
                     "post_text": "Posttext of post 3",
@@ -110,18 +103,26 @@ angular.module('myApp.factories', [])
 
                 postInfo.push(post1, post2, post3);
 
+                //GET
+                //path (api/getStories)
+                //returns list with stories and a nested list 
+                //of comments for each story
                 dataFactory.getAllPosts = function () {
 //                    postInfo.push($http.get(urlBasePost));
                     return postInfo;
                 };
+                
+                //Setting post-details when navigating story-view
                 dataFactory.setPostDetails = function (post) {
                     postInfoDetails.data = post;
                 };
 
+                //Getting post-details when navigating story-view
                 dataFactory.getPostDetails = function () {
                     return postInfoDetails;
                 };
 
+                //Add new comment to a story
                 dataFactory.addNewComment = function (comment) {                 
                     postInfo.forEach(function (postInfo) {
                         if (comment.post_parent === postInfo.hanesst_id) {
@@ -131,11 +132,13 @@ angular.module('myApp.factories', [])
 //                    return $http.post(urlBasePost + "/" + comment);
                 };
 
+                //Add new story
                 dataFactory.addPost = function (post) {
                     postInfo.push(post);
                     return $http.post(urlBasePost + "/" + post);
                 };
 
+                //Voting system
                 dataFactory.upvote = function (post) {
                     if (post.upvoted) {
                         post.post_karma--;
@@ -173,6 +176,7 @@ angular.module('myApp.factories', [])
 //                    return hanesst_id;
 //                };
 
+                //Getting current date/time GMT
                 dataFactory.getDateTime = function () {
                     var dt = new Date();
                     var utcDate = dt.toUTCString();

@@ -14,21 +14,20 @@ angular.module('myApp.view6', ['ngRoute'])
         .controller("View6Ctrl", ["$scope", "dataFactory", "$window", "$rootScope", function ($scope, dataFactory, $window, $rootScope) {
 
 
-            var newPost = {};
-            newPost.username = $rootScope.user.username;
-            newPost.post_type = "story";
-            newPost.pwd_hash = "mockPwdHash";
-            newPost.post_parent = "";
-            newPost.post_karma = 0;
-
-            $scope.submitPost = function () {
-                newPost.post_title = $scope.post_title;
-                newPost.post_url = $scope.post_url;
-                newPost.post_text = $scope.post_text;
-                newPost.hanesst_id = 0;
-                newPost.timeStamp = dataFactory.getDateTime();
-                dataFactory.addPost(newPost);
-                $window.location.href = '#/view1';
-            };
-        }]);
+                $scope.submitPost = function () {
+                    var newPost = {};
+                    newPost.username = $rootScope.user.username;
+                    newPost.post_type = "story";
+                    newPost.pwd_hash = "mockPwdHash";
+                    newPost.post_parent = "";
+                    newPost.post_karma = 0;
+                    newPost.post_title = $scope.post_title;
+                    newPost.post_url = $scope.post_url;
+                    newPost.post_text = $scope.post_text;
+                    newPost.hanesst_id = 0;
+                    newPost.timeStamp = dataFactory.getDateTime();
+                    dataFactory.addPost(newPost);
+                    $window.location.href = '#/view1';
+                };
+            }]);
 

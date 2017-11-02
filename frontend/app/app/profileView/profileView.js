@@ -47,6 +47,6 @@ angular.module('myApp.profileView', ['ngRoute'])
           }
 
           function test() {
-              console.log("Hvaad fanden");
+//              console.log("Hvaad fanden");
           }
 });
