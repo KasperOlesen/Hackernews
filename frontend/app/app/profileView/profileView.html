@@ -1,36 +1,37 @@
-<div>
-        <div class="status-report panel panel-default">
-        <h2 class="panel-heading"> Profile</h2>
-        <div class="panel-body">
 
-        <div class="row" style="padding: 20px;">
-            <div class="col">
-                <label>Name: {{user.username}}</label>
-            </div>
-            <div class="col">
-                <label>Karma: {{user.karma}} </label>
-            </div>
-            <div class="col">
-                <label>E-mail: {{user.email}}</label>
-            </div>
-            <div class="col">
-                <label>password: ********</label>
-            </div>
-      </div>
-      <div ng-show="loggedInUser()">
-        <label>Change password</label>
-        <form ng-submit="submit()">
-          <div>
-            <label for="pwd">skriv nyt password:</label>
-            <input type="password" class="form-control" ng-model="pwd1"/>
-          </div>
-          <div>
-            <label for="pwd">Gentag password:</label>
-            <input type="password" class="form-control" ng-model="pwd2"/>
-          </div>
-          <button type="submit" class="btn btn-primary" id="submit" value="Submit">submit</button>
-        </form>
-      </div>
-    </div>
-  </div>
+<h1 class="h1"> Profile</h1>
+<br>
+<br>
+<div class="col col-lg-12">
+    <label class="createPostTitle">Name:  </label><label> {{user.username}}</label> 
+    <br>
+    <label class="createPostTitle">Karma:  </label><label> {{user.karma}} </label>
+    <br>
+    <label class="createPostTitle">E-mail:  </label><label> {{user.email}}</label>
+    <br>
+    <label class="createPostTitle">password:  </label><label> ********</label>
+    <br>
 </div>
+
+
+
+<div class="col col-lg-4" ng-show="loggedInUser()">
+    <hr>
+        <label class="createPostTitleBig">Change password</label>
+    <br>
+    <form ng-submit="submit()">
+        <div>
+            <label class="createPostTitle" for="pwd">New password:</label>
+            <input type="password" class="form-control" ng-model="pwd1"/>
+            <br>
+        </div>
+        <div>          
+            <label class="createPostTitle" for="pwd">Confirm new password:</label>
+            <input type="password" class="form-control" ng-model="pwd2"/>
+            <br>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit" value="Submit">submit</button>
+    </form>
+</div>
+
+

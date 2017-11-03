@@ -24,15 +24,21 @@ angular.module('myApp.view1', ['ngRoute'])
 
 //        $scope.getCommentcount = function ()
 
-                $scope.posts = dataFactory.getAllPosts();
+                var posts = dataFactory.getAllPosts();
 
+                $scope.posts = posts;
+
+                if (localStorageService.isSupported) {
+                    localStorageService.set("posts", posts);
+                };
 
                 $scope.viewPost = function (post) {
                     postService.setPostDetails(post);
                     //localStorage
                     if (localStorageService.isSupported) {
                         localStorageService.set("postDetails", post);
-                    };
+                    }
+                    ;
                     $window.location.href = '#/view7';
                 };
 

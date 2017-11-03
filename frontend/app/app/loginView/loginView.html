@@ -1,18 +1,22 @@
+
+<h1 class="h1">Login</h1>
+<br>
+<br>
 <div ng-controller="AppLoginCtrl">
     <div class="row">
         <div class="col-lg-4">
-
-
+            
             <form class="form-signin" role="form" ng-submit="login()"  >
-                 <h2 class="form-signin-heading">Login</h2>
                 <label for="inputUsername" class="sr-only">username</label>
                 <input type="username" id="username" class="form-control"
                        placeholder="username" required ng-model="user.username">
-
+                
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" class="form-control"
                        placeholder="Password" required ng-model="user.password">
+                
                 <br>
+                
                 <button type="submit" class="btn btn-lg btn-success btn-block">Sign in</button>
             </form>
         </div>

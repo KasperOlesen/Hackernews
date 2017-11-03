@@ -1,19 +1,22 @@
+
+<h1 class="h1">Create post</h1>
+<br>
+<br>
 <div class="container">
     <div class="col-md-5">
         <div class="form-area">
             <form role="form">
                 <br style="clear:both">
-                <h3 style="margin-bottom: 25px; text-align: center;">New post</h3>
                 <div class="form-group">
-                    <label>Title</label>
+                    <label class="createPostTitle">Title</label>
                     <input type="text" class="form-control" id="title" ng-model="post_title" placeholder="Title" required>
                 </div>
                 <div class="form-group">
-                    <label>Website</label>
-                    <input type="text" class="form-control" id="url" ng-model="post_url" placeholder="Website">
+                    <label class="createPostTitle">URL</label>
+                    <input type="text" class="form-control" id="url" ng-model="post_url" placeholder="http://">
                 </div>
                 <div class="form-group">
-                    <label>Text</label>
+                    <label class="createPostTitle">Text</label>
                     <textarea class="form-control" rows="5" id="postText" ng-model="post_text" placeholder="Write something..."></textarea>
                 </div>
 

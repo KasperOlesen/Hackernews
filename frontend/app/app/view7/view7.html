@@ -15,9 +15,9 @@
         <span>{{post.post_title}}</span>
     </div>
     <div class="postTimestamp">
-        <span>{{post.timeStamp}} by {{post.username}}</span>
+        <span>{{post.timeStamp}} by <a ng-click="viewAuthor(post)" >{{post.username}}</a></span>
     </div>
-    <div class="commentary-2">
+    <div class="postText">
         <span>{{post.post_text}}</span>
     </div>
 </div>
@@ -42,7 +42,7 @@
     <!--
         THE LIST OF COMMENTS TO THE POST
     -->
-    <h3>Comments:</h3>
+    <h1 class="h1">Comments</h1>
 <div class="view7container" ng-repeat="comment in comments| orderBy: '-post_karma'">
 
     <div class="view7vote">
@@ -60,7 +60,7 @@
 
     </div>
 
-    <div class="commentary">
+    <div class="commentText">
         <span class="">
             {{comment.post_text}}
         </span>
