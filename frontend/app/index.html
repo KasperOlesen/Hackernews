@@ -19,6 +19,7 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src='bower_components/angular-animate/angular-animate.min.js'></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-local-storage/angular-local-storage.min.js"></script> 
     <script src="app/app.js"></script>
     <script src="app/view1/view1.js"></script>
     <script src="app/profileView/profileView.js"></script>
@@ -28,6 +29,7 @@
     <script src="app/view6/view6.js"></script>
     <script src="app/view7/view7.js"></script>
 
+    
     <script src="app/components/authentication.js"></script>
     <script src="app/components/filters.js"></script>
     <script src="app/components/directives.js"></script>
@@ -41,7 +43,7 @@
   <body ng-app="myApp">
 
     <div class="container"  >
-      <nav class="navbar navbar-fixed-top " role="navigation" ng-controller="AppLoginCtrl">
+      <nav class="navbar navbar-fixed-top navbar-inverse bg-inverse" role="navigation" ng-controller="AppLoginCtrl">
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -52,7 +54,7 @@
             </button>
             <a class="navbar-brand" href="#">{{title}}</a>
           </div>
-          <div id="navbar" class="collapse navbar-collapse">
+          <div id="navbar" class="">
             <ul class="nav navbar-nav">
               <li><a href="#/view1">Frontpage</a></li>
               <li ng-show="isAuthenticated"><a href="#/view6">Create Post</a></li>
@@ -76,13 +78,39 @@
 
       <div class="container">
         <div style="margin-top: 60px;">
-          <hr style="background: lightblue; border:0; height:7px" />
+          <hr style="background: white; border:0; height:7px" />
           <div class="alert alert-danger" role="alert" ng-show="error">{{error}}</div>
-          <div ng-view></div>
+          <div class="fixed-height" ng-view></div>
         </div>
       </div>
     </div>
-
+    
+    <div id="footer">
+      <ul>
+        <li>Michael Laudrup</li>
+        <li>Poul Reichard</li>
+        <li>Casper Cristensen</li>
+        <li>Ali Muhammed</li>
+        <li>Superman</li>
+      </ul>
+      
+      <ul>
+        <li>Hackernews clone</li>
+        <li>Group J</li>
+        <li>Large Systems Development</li>
+        <li>CPH Business</li>
+        <li><br></li>
+      </ul>
+      
+      <ul>
+        <li><a href="">Link to documentation:</a></li>
+        <br>
+        <li><a href="">Link to IssueTracker:</a></li>
+        <li><br></li>
+        <li><br></li>
+      </ul>
+      
+    </div>
 
 
   </body>

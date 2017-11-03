@@ -4,20 +4,25 @@
 
 // Demonstrate how to register services
 angular.module('myApp.services', [])
-  .service('flightService', function() {
-  var flightInfoList = [];
+        .service('postService', function () {
 
-  var addFlightInfo = function(flightInfo) {
-      flightInfoList.push(flightInfo);
-  };
+            
+            var postInfoDetails = [];
+            
 
-  var getFlightInfo = function(){
-      return flightInfoList;
-  };
 
-  return {
-    addFlightInfo: addFlightInfo,
-    getFlightInfo: getFlightInfo
-  };
+            //Setting post-details when navigating story-view
+            var setPostDetails = function (post) {
+                postInfoDetails = post;
+            };
+            //Getting post-details when navigating story-view
+            var getPostDetails = function () {
+                return postInfoDetails;
+            };
 
-});
+            return {
+                setPostDetails: setPostDetails,
+                getPostDetails: getPostDetails
+            };
+
+        });

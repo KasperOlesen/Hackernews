@@ -11,11 +11,20 @@ angular.module('myApp.view7', ['ngRoute'])
                 });
             }])
 
-        .controller("View7Ctrl", ["$scope", "dataFactory", "$rootScope", "$location", "$window", function ($scope, dataFactory, $rootScope, $location, $window) {
+        .controller("View7Ctrl", ["$scope", "dataFactory", "postService", "$rootScope", "$location", "$window", "localStorageService", function ($scope, dataFactory, postService, $rootScope, $location, $window, localStorageService) {
 
-                var post = dataFactory.getPostDetails();
-                $scope.post = post.data;
-                $scope.comments = post.data['comments'];
+                $scope.post = postService.getPostDetails();
+                $scope.comments = postService.getPostDetails().comments;
+
+                console.log(postService.getPostDetails());
+
+
+                if (postService.getPostDetails().length === 0 && localStorageService.isSupported) {
+                    var localStorage = localStorageService.get("postDetails");
+                    $scope.post = localStorage;
+                    $scope.comments = localStorage.comments;
+
+                }
 
 
                 $scope.upvote = function (post) {

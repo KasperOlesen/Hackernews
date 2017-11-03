@@ -2,7 +2,7 @@
 <h1 style="color:#105cb6">View1</h1>
 <br>
 <br>
-<div class="view1container" ng-repeat="post in posts | orderBy: '-post_karma'">
+<div class="view1container" ng-repeat="post in posts | orderBy: '-post_karma'" ng-click="viewPost(post)">
 
         <div class="post">
             <span>{{$index+1}}</span>

@@ -17,7 +17,8 @@ angular.module('myApp', [
   'myApp.directives',
   'myApp.factories',
   'myApp.services',
-  'myApp.fakeBackend'
+  'myApp.fakeBackend',
+  'LocalStorageModule'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/view1'});

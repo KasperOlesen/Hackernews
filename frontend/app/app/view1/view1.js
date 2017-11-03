@@ -10,8 +10,8 @@ angular.module('myApp.view1', ['ngRoute'])
                 });
             }])
 
-        .controller('View1Ctrl', ["$scope", "dataFactory", "$window", function ($scope, dataFactory, $window) {
-                $scope.dataFactory = dataFactory;
+        .controller('View1Ctrl', ["$scope", "dataFactory", "postService", "$window", "localStorageService", function ($scope, dataFactory, postService, $window, localStorageService) {
+
 //          $http({
 //            method: 'GET',
 //            url: 'api/post'
@@ -28,7 +28,11 @@ angular.module('myApp.view1', ['ngRoute'])
 
 
                 $scope.viewPost = function (post) {
-                    dataFactory.setPostDetails(post);
+                    postService.setPostDetails(post);
+                    //localStorage
+                    if (localStorageService.isSupported) {
+                        localStorageService.set("postDetails", post);
+                    };
                     $window.location.href = '#/view7';
                 };
 
@@ -43,6 +47,13 @@ angular.module('myApp.view1', ['ngRoute'])
                 $scope.downvote = function (post) {
                     dataFactory.downvote(post);
                 };
+
+
+                //localStorage
+                if (localStorageService.isSupported) {
+                    localStorageService.set("postDetails", dataFactory.getAllPosts());
+                }
+                ;
 
             }]);
 
