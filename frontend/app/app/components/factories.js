@@ -2,13 +2,12 @@
 /* Place your global Factory-service in this file */
 
 angular.module('myApp.factories', [])
-        .factory('dataFactory', ['$http', '$window','localStorageService', function ($http, $window, localStorageService) {
+        .factory('dataFactory', ['$http', '$window', 'localStorageService', function ($http, $window, localStorageService) {
 
                 var urlBasePost = 'api/post';
                 var dataFactory = {};
                 var postInfo = [];
-                var postInfoDetails = [];
-                var authorInfoDetails = {};
+                var authorInfoDetails = [];
 
 
                 //Mock objects with test data
@@ -259,8 +258,8 @@ angular.module('myApp.factories', [])
                     "post_karma": 45623,
                     "comments": []
                 };
-                
-                
+
+
                 postInfo.push(post1, post2, post3,
                         post4, post5, post6,
                         post7, post8, post9,
@@ -279,23 +278,59 @@ angular.module('myApp.factories', [])
 
                 //Setting author-details when navigating view3
                 dataFactory.setAuthorDetails = function (author) {
-                    authorInfoDetails = author;
+                    authorInfoDetails.username = author.username;
+                    authorInfoDetails.karma = dataFactory.getKarma(author.username);
+                    var postList = [];
+                    var commentList = [];
+                    postInfo.forEach(function (postInfo) {  
+                        if (postInfo.username === author.username) {
+                            postList.push(postInfo);
+                        }
+                        if (postInfo.comments.username === author.username){
+                            commentsList.push
+                        }
+                    });            
+                    authorInfoDetails.posts = postList;
                 };
 
                 //Getting author-details when navigating view3
                 dataFactory.getAuthorDetails = function () {
                     return authorInfoDetails;
                 };
+                
+                dataFactory.getKarma = function (username){
+                    var karma = {};
+                    karma.posts = 0;
+                    karma.comments = 0;
+                    
+                    postInfo.forEach(function (postInfo) {
+                        if(postInfo.username === username){
+                            karma.posts += postInfo.post_karma;
+                        }
+                        
+                        //add for each loop on all comments
+                        //will be deprecated
+                        //Check should be done with match(post_type) 
+                        //instead of nested loop
+                        if(postInfo.comments.username === username){
+                            karma.comments += postInfo.comments.post_karma;
+                        }              
+                    });
+                    return karma;
+                };
+
 
                 //Add new comment to a story
                 dataFactory.addNewComment = function (comment) {
                     postInfo.forEach(function (postInfo) {
                         if (comment.post_parent === postInfo.hanesst_id) {
                             postInfo.comments.push(comment);
-                            if (localStorageService.isSupported){
+                            if (localStorageService.isSupported) {
                                 localStorageService.set("postDetails", postInfo);
-                            };
-                        };
+                            }
+                            ;
+                        }
+                        ;
                     });
 //                    return $http.post(urlBasePost + "/" + comment);
                 };

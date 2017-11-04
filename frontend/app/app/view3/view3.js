@@ -21,8 +21,15 @@ angular.module('myApp.view3', ['ngRoute'])
 //          });
 
             var author = dataFactory.getAuthorDetails();
-            $scope.author = author;
-            console.log($scope.author);
+
+            $scope.author = author['username'];
+            $scope.karma = author['karma'];
+            $scope.authorPosts = author.posts;
+            
+
+ 
+//            console.log(author);
+//            console.log(author[1]);
           });
 
 

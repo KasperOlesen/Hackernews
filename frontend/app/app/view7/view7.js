@@ -13,11 +13,10 @@ angular.module('myApp.view7', ['ngRoute'])
 
         .controller("View7Ctrl", ["$scope", "dataFactory", "postService", "$rootScope", "$location", "$window", "localStorageService", function ($scope, dataFactory, postService, $rootScope, $location, $window, localStorageService) {
 
-                $scope.post = postService.getPostDetails();
-                $scope.comments = postService.getPostDetails().comments;
+                var post = postService.getPostDetails();
 
-                console.log(postService.getPostDetails());
-
+                $scope.post = post;
+                $scope.comments = post.comments;
 
                 if (postService.getPostDetails().length === 0 && localStorageService.isSupported) {
                     var localStorage = localStorageService.get("postDetails");
@@ -36,7 +35,6 @@ angular.module('myApp.view7', ['ngRoute'])
 
                 $scope.viewAuthor = function (comment) {
                     dataFactory.setAuthorDetails(comment);
-                    console.log(comment);
                     $window.location.href = '#/view3';
                 };
 
@@ -46,7 +44,7 @@ angular.module('myApp.view7', ['ngRoute'])
                     newComment.username = $rootScope.user.username;
                     newComment.post_type = "comment";
                     newComment.pwd_hash = "mockPwdHash";
-                    newComment.post_parent = post.data['hanesst_id'];
+                    newComment.post_parent = $scope.post.hanesst_id;
                     newComment.post_karma = 0;
                     newComment.post_title = "";
                     newComment.post_url = "";

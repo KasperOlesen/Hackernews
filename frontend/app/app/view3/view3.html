@@ -5,13 +5,37 @@
 <div class="col col-lg-12">
 
 
-    <label class="createPostTitle">Name:  </label><label>  {{author.username}}</label>
+    <label class="createPostTitle">Name:  </label><label>  {{author}}</label>
     <br>
-    <label class="createPostTitle">Karma:  </label><label>  {{author.karma}} </label>
+    <label class="createPostTitle">Karma:  </label><label>  {{karma}} </label>
     <br>
     <hr>
     <label class="createPostTitleBig">Posts</label>
     <br>
-  
+    <div class="view7container" ng-repeat="post in authorPosts| orderBy: '-post_karma'">
+
+        <div class="view7vote">
+            <a ng-show="isAuthenticated" href="" ng-click='upvote(post)' class="glyphicon glyphicon-arrow-up" title="Upvote"></a>
+            <a ng-show="isAuthenticated" href="" ng-click='downvote(post)' class="glyphicon glyphicon-arrow-down" title="Downvote"></a>
+        </div>
+
+        <div class="author">
+            <a title="Hide comment">&#10005;</a>&nbsp
+            <a ng-click="viewAuthor(post)" >{{post.username}}</a>
+            //
+            <span class="commentKarma"> <b> {{post.post_karma}} points </b> </span>
+            //
+            <span class="commentTimestamp">{{post.timeStamp}}</span>
+
+        </div>
+
+        <div class="commentText">
+            <span class="">
+                {{comment.post_text}}
+            </span>
+        </div>
+
+    </div>
+
 </div>
 
