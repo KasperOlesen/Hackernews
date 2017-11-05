@@ -24,7 +24,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
 //        $scope.getCommentcount = function ()
 
-                var posts = dataFactory.getAllPosts();
+                var posts = dataFactory.getAllStories();
 
                 $scope.posts = posts;
 
@@ -57,7 +57,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
                 //localStorage
                 if (localStorageService.isSupported) {
-                    localStorageService.set("postDetails", dataFactory.getAllPosts());
+                    localStorageService.set("postDetails", dataFactory.getAllStories());
                 }
                 ;
 

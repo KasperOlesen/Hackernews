@@ -6,7 +6,7 @@ angular.module('myApp.factories', [])
 
                 var urlBasePost = 'api/post';
                 var dataFactory = {};
-                var postInfo = [];
+                var storyInfo = [];
                 var authorInfoDetails = [];
 
 
@@ -260,7 +260,7 @@ angular.module('myApp.factories', [])
                 };
 
 
-                postInfo.push(post1, post2, post3,
+                storyInfo.push(post1, post2, post3,
                         post4, post5, post6,
                         post7, post8, post9,
                         post10, post11, post12,
@@ -270,9 +270,9 @@ angular.module('myApp.factories', [])
                 //path (api/getStories)
                 //returns list with stories and a nested list
                 //of comments for each story
-                dataFactory.getAllPosts = function () {
+                dataFactory.getAllStories = function () {
 //                    postInfo.push($http.get(urlBasePost));
-                    return postInfo;
+                    return storyInfo;
                 };
 
 
@@ -282,11 +282,11 @@ angular.module('myApp.factories', [])
                     authorInfoDetails.karma = dataFactory.getKarma(author.username);
                     var postList = [];
                     var commentList = [];
-                    postInfo.forEach(function (postInfo) {  
-                        if (postInfo.username === author.username) {
-                            postList.push(postInfo);
+                    storyInfo.forEach(function (storyInfo) {  
+                        if (storyInfo.username === author.username) {
+                            postList.push(storyInfo);
                         }
-                        if (postInfo.comments.username === author.username){
+                        if (storyInfo.comments.username === author.username){
                             commentsList.push
                         }
                     });            
@@ -300,20 +300,23 @@ angular.module('myApp.factories', [])
                 
                 dataFactory.getKarma = function (username){
                     var karma = {};
+                    var comments = [];
                     karma.posts = 0;
                     karma.comments = 0;
                     
-                    postInfo.forEach(function (postInfo) {
-                        if(postInfo.username === username){
-                            karma.posts += postInfo.post_karma;
+                    storyInfo.forEach(function (storyInfo) {
+                        if(storyInfo.username === username){
+                            karma.posts += storyInfo.post_karma;
                         }
                         
-                        //add for each loop on all comments
-                        //will be deprecated
-                        //Check should be done with match(post_type) 
-                        //instead of nested loop
-                        if(postInfo.comments.username === username){
-                            karma.comments += postInfo.comments.post_karma;
+                    
+                        comments = storyInfo.filter(function(comments){
+                            console.log(comments);
+                        });
+                            
+                        
+                        if(storyInfo.comments.username === username){
+                            karma.comments += storyInfo.comments.post_karma;
                         }              
                     });
                     return karma;
@@ -322,11 +325,11 @@ angular.module('myApp.factories', [])
 
                 //Add new comment to a story
                 dataFactory.addNewComment = function (comment) {
-                    postInfo.forEach(function (postInfo) {
-                        if (comment.post_parent === postInfo.hanesst_id) {
-                            postInfo.comments.push(comment);
+                    storyInfo.forEach(function (storyInfo) {
+                        if (comment.post_parent === storyInfo.hanesst_id) {
+                            storyInfo.comments.push(comment);
                             if (localStorageService.isSupported) {
-                                localStorageService.set("postDetails", postInfo);
+                                localStorageService.set("postDetails", storyInfo);
                             }
                             ;
                         }
@@ -337,7 +340,7 @@ angular.module('myApp.factories', [])
 
                 //Add new story
                 dataFactory.addPost = function (post) {
-                    postInfo.push(post);
+                    storyInfo.push(post);
                     return $http.post(urlBasePost + "/" + post);
                 };
 
