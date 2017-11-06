@@ -11,26 +11,9 @@ angular.module('myApp.view1', ['ngRoute'])
             }])
 
         .controller('View1Ctrl', ["$scope", "dataFactory", "postService", "$window", "localStorageService", function ($scope, dataFactory, postService, $window, localStorageService) {
-
-//          $http({
-//            method: 'GET',
-//            url: 'api/post'
-//          }).then(function successCallback(res) {
-//            $scope.post = res.data.message;
-//          }, function errorCallback(res) {
-//            $scope.error = res.status + ": "+ res.data.statusText;
-//          });
-
-
-//        $scope.getCommentcount = function ()
-
-                var posts = dataFactory.getAllStories();
-
-                $scope.posts = posts;
-
-                if (localStorageService.isSupported) {
-                    localStorageService.set("posts", posts);
-                };
+ 
+           
+                $scope.posts = dataFactory.getStories();
 
                 $scope.viewPost = function (post) {
                     postService.setPostDetails(post);
@@ -55,11 +38,7 @@ angular.module('myApp.view1', ['ngRoute'])
                 };
 
 
-                //localStorage
-                if (localStorageService.isSupported) {
-                    localStorageService.set("postDetails", dataFactory.getAllStories());
-                }
-                ;
+
 
             }]);
 

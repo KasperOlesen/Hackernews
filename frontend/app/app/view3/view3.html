@@ -12,31 +12,63 @@
     <label class="createPostTitle">CommentKarma:  </label><label>  {{karma.comments}} </label>
     <br>
     <hr>
-    <label class="createPostTitleBig">Posts</label>
-    <br>
-    <div class="view7container" ng-repeat="post in authorPosts| orderBy: '-post_karma'">
+    <button class="btn btn-default" ng-click="showPostSection = !showPostSection">Toggle Posts</button> <button class="btn"  ng-click="showCommentSection = !showCommentSection">Toggle Comments</button>
+    <hr>
+    <div ng-hide="!showPostSection">
+        <label class="createPostTitleBig">Posts</label>
+        <br>
+        <div class="view7container" ng-repeat="comment in authorPosts| orderBy: '-post_karma'">
 
-        <div class="view7vote">
-            <a ng-show="isAuthenticated" href="" ng-click='upvote(post)' class="glyphicon glyphicon-arrow-up" title="Upvote"></a>
-            <a ng-show="isAuthenticated" href="" ng-click='downvote(post)' class="glyphicon glyphicon-arrow-down" title="Downvote"></a>
+            <div class="view7vote">
+                <a ng-show="isAuthenticated" href="" ng-click='upvote(comment)' class="glyphicon glyphicon-arrow-up" title="Upvote"></a>
+                <a ng-show="isAuthenticated" href="" ng-click='downvote(comment)' class="glyphicon glyphicon-arrow-down" title="Downvote"></a>
+            </div>
+
+            <div class="author">
+                <a title="Hide comment">&#10005;</a>&nbsp
+                <a ng-click="viewAuthor(comment)" >{{comment.username}}</a>
+                //
+                <span class="commentKarma"> <b> {{comment.post_karma}} points </b> </span>
+                //
+                <span class="commentTimestamp">{{comment.timeStamp}}</span>
+
+            </div>
+
+            <div class="commentText">
+                <span class="">
+                    {{comment.post_text}}
+                </span>
+            </div>
+
         </div>
+    </div>
+    <div ng-hide="!showCommentSection">
+        <label class="createPostTitleBig">Comments</label>
+        <br>
+        <div class="view7container" ng-repeat="comment in authorComments| orderBy: '-post_karma'">
 
-        <div class="author">
-            <a title="Hide comment">&#10005;</a>&nbsp
-            <a ng-click="viewAuthor(post)" >{{post.username}}</a>
-            //
-            <span class="commentKarma"> <b> {{post.post_karma}} points </b> </span>
-            //
-            <span class="commentTimestamp">{{post.timeStamp}}</span>
+            <div class="view7vote">
+                <a ng-show="isAuthenticated" href="" ng-click='upvote(comment)' class="glyphicon glyphicon-arrow-up" title="Upvote"></a>
+                <a ng-show="isAuthenticated" href="" ng-click='downvote(comment)' class="glyphicon glyphicon-arrow-down" title="Downvote"></a>
+            </div>
+
+            <div class="author">
+                <a title="Hide comment">&#10005;</a>&nbsp
+                <a ng-click="viewAuthor(comment)" >{{comment.username}}</a>
+                //
+                <span class="commentKarma"> <b> {{comment.post_karma}} points </b> </span>
+                //
+                <span class="commentTimestamp">{{comment.timeStamp}}</span>
+
+            </div>
+
+            <div class="commentText">
+                <span class="">
+                    {{comment.post_text}}
+                </span>
+            </div>
 
         </div>
-
-        <div class="commentText">
-            <span class="">
-                {{comment.post_text}}
-            </span>
-        </div>
-
     </div>
 
 </div>

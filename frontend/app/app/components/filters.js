@@ -3,8 +3,12 @@
 /* Place your Global Filters in this file */
 
 angular.module('myApp.filters', []).
-  filter('checkmark', function () {
-    return function(input) {
-      return input ? '\u2713' : '\u2718';
-    };
+  filter('ifEmpty', function() {
+    return function(input, defaultValue) {
+        if (angular.isUndefined(input) || input === null || input === '') {
+            return defaultValue;
+        }
+
+        return input;
+    }
   });

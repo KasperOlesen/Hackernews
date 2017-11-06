@@ -2,16 +2,15 @@
 /* Place your global Factory-service in this file */
 
 angular.module('myApp.factories', [])
-        .factory('dataFactory', ['$http', '$window', 'localStorageService', function ($http, $window, localStorageService) {
+        .factory('dataFactory', ['$http', 'localStorageService', 'postService', '$rootScope', function ($http, localStorageService, postService, $rootScope) {
 
-                var urlBasePost = 'api/post';
+
                 var dataFactory = {};
                 var storyInfo = [];
                 var authorInfoDetails = [];
 
 
-                //Mock objects with test data
-
+                //MOCK OBJECTS WITH TEST DATA
                 var post1 = {"username": "Tove",
                     "post_type": "story",
                     "pwd_hash": "ublamgata",
@@ -260,91 +259,141 @@ angular.module('myApp.factories', [])
                 };
 
 
-                storyInfo.push(post1, post2, post3,
-                        post4, post5, post6,
-                        post7, post8, post9,
-                        post10, post11, post12,
-                        post13, post14, post15);
+
+                dataFactory.setStories = function (stories) {
+                    if (stories === "error" && storyInfo.length === 0) {
+                        storyInfo.push(post1, post2, post3,
+                                post4, post5, post6,
+                                post7, post8, post9,
+                                post10, post11, post12,
+                                post13, post14, post15);
+                    }
+                    if (stories === "cache" && storyInfo.length === 0) {
+                        storyInfo.push(localStorageService.get("posts"));
+                    }
+                    ;
+                };
 
                 //GET
-                //path (api/getStories)
-                //returns list with stories and a nested list
-                //of comments for each story
-                dataFactory.getAllStories = function () {
-//                    postInfo.push($http.get(urlBasePost));
+                //PATH (api/getStories)
+                //RETURNS LIST OF STORIES WITH
+                //NESTED LIST OF COMMENTS IN EACH STORY
+                dataFactory.getStories = function () {
+                    $http({
+                        method: 'GET',
+                        url: '/api/stories'
+                    }).then(function successCallback(response) {
+                        dataFactory.setStories(response.data);
+                        $rootScope.error = false;
+                        if (localStorageService.isSupported) {
+                            localStorageService.set("posts", response.data);
+                        }
+                    }, function errorCallback(response) {
+                        if (localStorageService.get("posts").length > 0 && storyInfo.length !== 0) {
+                            dataFactory.setStories("cache");
+                            $rootScope.error = "Error: Can't connect to server - Loading cached data...";
+
+                        } else {
+                            dataFactory.setStories("error");
+                            $rootScope.error = "Error: Can't connect to server or load cached data - Loading mocks as last option...";
+                        }
+                    });
                     return storyInfo;
                 };
 
-
-                //Setting author-details when navigating view3
-                dataFactory.setAuthorDetails = function (author) {
-                    authorInfoDetails.username = author.username;
-                    authorInfoDetails.karma = dataFactory.getKarma(author.username);
+                //SETTING AUTHOR-DETAILS WHEN NAVIGATING TO view3
+                dataFactory.setAuthorDetails = function (post) {
+                    authorInfoDetails.username = post.username;
+                    authorInfoDetails.karma = dataFactory.getKarma(post.username);
                     var postList = [];
                     var commentList = [];
-                    storyInfo.forEach(function (storyInfo) {  
-                        if (storyInfo.username === author.username) {
+                    storyInfo.forEach(function (storyInfo) {
+                        if (storyInfo.username === post.username) {
                             postList.push(storyInfo);
                         }
-                        if (storyInfo.comments.username === author.username){
-                            commentsList.push
-                        }
-                    });            
+                        storyInfo.comments.forEach(function (comment) {
+                            if (comment.username === post.username) {
+                                commentList.push(comment);
+                            }
+                        });
+                    });
                     authorInfoDetails.posts = postList;
+                    authorInfoDetails.comments = commentList;
                 };
 
-                //Getting author-details when navigating view3
+                //GETTING AUTHOR-DETAILS WHEN NAVIGATING TO view3
                 dataFactory.getAuthorDetails = function () {
                     return authorInfoDetails;
                 };
-                
-                dataFactory.getKarma = function (username){
+
+                //CALCULATING KARMA POINTS FOR STORIES AND COMMENTS
+                dataFactory.getKarma = function (username) {
                     var karma = {};
-                    var comments = [];
                     karma.posts = 0;
                     karma.comments = 0;
-                    
+
                     storyInfo.forEach(function (storyInfo) {
-                        if(storyInfo.username === username){
+                        if (storyInfo.username === username) {
                             karma.posts += storyInfo.post_karma;
                         }
-                        
-                    
-                        comments = storyInfo.filter(function(comments){
-                            console.log(comments);
+                        storyInfo.comments.forEach(function (comment) {
+                            if (comment.username === username) {
+                                console.log(comment.post_karma);
+                                karma.comments += comment.post_karma;
+                            }
                         });
-                            
-                        
-                        if(storyInfo.comments.username === username){
-                            karma.comments += storyInfo.comments.post_karma;
-                        }              
+
                     });
                     return karma;
                 };
 
 
-                //Add new comment to a story
-                dataFactory.addNewComment = function (comment) {
-                    storyInfo.forEach(function (storyInfo) {
-                        if (comment.post_parent === storyInfo.hanesst_id) {
-                            storyInfo.comments.push(comment);
-                            if (localStorageService.isSupported) {
-                                localStorageService.set("postDetails", storyInfo);
+                //ADD NEW POST (story/comment)
+                //POST
+                //PATH (api/post)
+                //POSTS TO BACKEND AND ALSO STORES IN LOCALSTORAGE
+                dataFactory.addPost = function (post) {
+                    var commentList = [];
+                    if (post.post_type === "story") {
+                        storyInfo.push(post);
+                        if (localStorageService.isSupported) {
+                            localStorageService.set("posts", storyInfo);
+                        }
+                    }
+                    if (post.post_type === "comment") {
+                        storyInfo.forEach(function (storyInfo) {
+                            if (post.post_parent === storyInfo.hanesst_id) {
+                                if (storyInfo.comments.length > 0) {
+                                }
+                                commentList = storyInfo.comments;
+                                commentList.push(post);
+                                storyInfo.comments = commentList;
+                                postService.setPostDetails(storyInfo);
+                                if (localStorageService.isSupported) {
+                                    localStorageService.set("postDetails", storyInfo);
+                                }
+                                ;
                             }
                             ;
-                        }
-                        ;
+                        });
+                    }
+                    ;
+                    $http({
+                        method: 'post',
+                        url: '/api/post',
+                        data: post
+                    }).then(function successCallback(response) {
+                        angular.element(document.querySelector("#error")).removeClass("alert-danger");
+                        angular.element(document.querySelector("#error")).addClass("alert-success");
+                        $rootScope.error = "Success: Commment added";
+                    }, function errorCallback(response) {
+                        angular.element(document.querySelector("#error")).removeClass("alert-success");
+                        angular.element(document.querySelector("#error")).addClass("alert-danger");
+                        $rootScope.error = "Error: Failed posting to backend. Using cache.";
                     });
-//                    return $http.post(urlBasePost + "/" + comment);
                 };
 
-                //Add new story
-                dataFactory.addPost = function (post) {
-                    storyInfo.push(post);
-                    return $http.post(urlBasePost + "/" + post);
-                };
-
-                //Voting system
+                //VOTE SYSTEM
                 dataFactory.upvote = function (post) {
                     if (post.upvoted) {
                         post.post_karma--;
@@ -374,15 +423,7 @@ angular.module('myApp.factories', [])
                     return post;
                 };
 
-//                dataFactory.newHanesstId = function () {
-//                    var hanesst_id = Math.max.apply(Math, postInfo.map(function (o) {
-//                        return o.hanesst_id;
-//                    }));
-//                    hanesst_id++;
-//                    return hanesst_id;
-//                };
-
-                //Getting current date/time GMT
+                //CURRENT DATE/TIME FOR NEW POSTS
                 dataFactory.getDateTime = function () {
                     var dt = new Date();
                     var utcDate = dt.toUTCString();

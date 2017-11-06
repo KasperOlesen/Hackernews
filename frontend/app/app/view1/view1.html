@@ -34,7 +34,7 @@
             </span>
             //
             <span class="mainTextColor">
-                <a href="" ng-click="viewPost(post)">{{post.comments.length}} comments</a>
+                <a href="" ng-click="viewPost(post)">{{post.comments.length | ifEmpty:0}} comments</a>
             </span>
         </div>
 </div>

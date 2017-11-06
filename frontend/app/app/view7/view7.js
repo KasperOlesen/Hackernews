@@ -18,10 +18,11 @@ angular.module('myApp.view7', ['ngRoute'])
                 $scope.post = post;
                 $scope.comments = post.comments;
 
-                if (postService.getPostDetails().length === 0 && localStorageService.isSupported) {
-                    var localStorage = localStorageService.get("postDetails");
-                    $scope.post = localStorage;
-                    $scope.comments = localStorage.comments;
+                if (post.length === 0 && localStorageService.isSupported) {
+                    $rootScope.error = "Error connecting to server. Loading cached data...";
+                    post = localStorageService.get("postDetails");
+                    $scope.post = post;
+                    $scope.comments = post.comments;
 
                 }
 
@@ -33,26 +34,29 @@ angular.module('myApp.view7', ['ngRoute'])
                     dataFactory.downvote(post);
                 };
 
-                $scope.viewAuthor = function (comment) {
-                    dataFactory.setAuthorDetails(comment);
+                $scope.viewAuthor = function (post) {
+                    dataFactory.setAuthorDetails(post);
                     $window.location.href = '#/view3';
                 };
 
                 $scope.submitComment = function () {
 
+                    //random mock hanesst_id
+                    var randomHanesst = Math.floor((Math.random() * 10000000) + 1);
+
+
                     var newComment = {};
                     newComment.username = $rootScope.user.username;
                     newComment.post_type = "comment";
-                    newComment.pwd_hash = "mockPwdHash";
+                    newComment.pwd_hash = $rootScope.user.password;
                     newComment.post_parent = $scope.post.hanesst_id;
                     newComment.post_karma = 0;
                     newComment.post_title = "";
                     newComment.post_url = "";
                     newComment.post_text = $scope.post_text;
-                    newComment.hanesst_id = 0;
+                    newComment.hanesst_id = randomHanesst;
                     newComment.timeStamp = dataFactory.getDateTime();
-                    dataFactory.addNewComment(newComment);
-
+                    dataFactory.addPost(newComment);
                     $scope.post_text = "";
                 };
 
