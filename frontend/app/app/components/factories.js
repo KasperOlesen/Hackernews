@@ -128,145 +128,33 @@ angular.module('myApp.factories', [])
                 var post4 = {"username": "Bo",
                     "post_type": "story",
                     "pwd_hash": "ublsadgamgata",
-                    "post_title": "Test post 3",
+                    "post_title": "Test post 4",
                     "post_url": "www.arto.dk",
                     "post_parent": "",
                     "hanesst_id": 101,
-                    "post_text": "Posttext of post 3",
+                    "post_text": "Posttext of post 4",
                     "post_karma": 45623,
                     "comments": []
                 };
-                var post5 = {"username": "Bo",
+                var post5= {"username": "Unidanaa",
                     "post_type": "story",
                     "pwd_hash": "ublsadgamgata",
-                    "post_title": "Test post 3",
-                    "post_url": "www.arto.dk",
+                    "post_title": "Test post 4",
+                    "post_url": "www.UnidanIsAwesome.dk",
                     "post_parent": "",
-                    "hanesst_id": 102,
-                    "post_text": "Posttext of post 3",
+                    "hanesst_id": 12345231,
+                    "post_text": "Posttext of post 5",
                     "post_karma": 45623,
                     "comments": []
                 };
-                var post6 = {"username": "Bo",
-                    "post_type": "story",
-                    "pwd_hash": "ublsadgamgata",
-                    "post_title": "WMWMWMw WM MW MwW MWMWMWM wM WMWMWMWMWM WMWM WMWMWMw WM MW MwW MWMWMWM wM WMWMWMWMWM WMWM WMWMWMw WM MW MwW MWMWMWM wM WMWMWMWMWM WMWM WMWMWMw WM MW MwW MWMWMWM wM WMWMWMWMWM WMWM",
-                    "post_url": "www.arto.dk",
-                    "post_parent": "",
-                    "hanesst_id": 103,
-                    "post_text": "Posttext of post 3",
-                    "post_karma": 45623,
-                    "comments": []
-                };
-                var post7 = {"username": "Bo",
-                    "post_type": "story",
-                    "pwd_hash": "ublsadgamgata",
-                    "post_title": "Test post 3",
-                    "post_url": "www.arto.dk",
-                    "post_parent": "",
-                    "hanesst_id": 104,
-                    "post_text": "Posttext of post 3",
-                    "post_karma": 45623,
-                    "comments": []
-                };
-                var post8 = {"username": "Bo",
-                    "post_type": "story",
-                    "pwd_hash": "ublsadgamgata",
-                    "post_title": "Test post 3",
-                    "post_url": "www.arto.dk",
-                    "post_parent": "",
-                    "hanesst_id": 105,
-                    "post_text": "Posttext of post 3",
-                    "post_karma": 45623,
-                    "comments": []
-                };
-                var post9 = {"username": "Bo",
-                    "post_type": "story",
-                    "pwd_hash": "ublsadgamgata",
-                    "post_title": "Test post 3",
-                    "post_url": "www.arto.dk",
-                    "post_parent": "",
-                    "hanesst_id": 106,
-                    "post_text": "Posttext of post 3",
-                    "post_karma": 45623,
-                    "comments": []
-                };
-                var post10 = {"username": "Bo",
-                    "post_type": "story",
-                    "pwd_hash": "ublsadgamgata",
-                    "post_title": "Test post 3",
-                    "post_url": "www.arto.dk",
-                    "post_parent": "",
-                    "hanesst_id": 107,
-                    "post_text": "Posttext of post 3",
-                    "post_karma": 45623,
-                    "comments": []
-                };
-                var post11 = {"username": "Bo",
-                    "post_type": "story",
-                    "pwd_hash": "ublsadgamgata",
-                    "post_title": "Test post 3",
-                    "post_url": "www.arto.dk",
-                    "post_parent": "",
-                    "hanesst_id": 108,
-                    "post_text": "Posttext of post 3",
-                    "post_karma": 45623,
-                    "comments": []
-                };
-                var post12 = {"username": "Bo",
-                    "post_type": "story",
-                    "pwd_hash": "ublsadgamgata",
-                    "post_title": "Test post 3",
-                    "post_url": "www.arto.dk",
-                    "post_parent": "",
-                    "hanesst_id": 109,
-                    "post_text": "Posttext of post 3",
-                    "post_karma": 45623,
-                    "comments": []
-                };
-                var post13 = {"username": "Bo",
-                    "post_type": "story",
-                    "pwd_hash": "ublsadgamgata",
-                    "post_title": "Test post 3",
-                    "post_url": "www.arto.dk",
-                    "post_parent": "",
-                    "hanesst_id": 110,
-                    "post_text": "Posttext of post 3",
-                    "post_karma": 45623,
-                    "comments": []
-                };
-                var post14 = {"username": "Bo",
-                    "post_type": "story",
-                    "pwd_hash": "ublsadgamgata",
-                    "post_title": "Test post 3",
-                    "post_url": "www.arto.dk",
-                    "post_parent": "",
-                    "hanesst_id": 111,
-                    "post_text": "Posttext of post 3",
-                    "post_karma": 45623,
-                    "comments": []
-                };
-                var post15 = {"username": "Bo",
-                    "post_type": "story",
-                    "pwd_hash": "ublsadgamgata",
-                    "post_title": "Test post 3",
-                    "post_url": "www.arto.dk",
-                    "post_parent": "",
-                    "hanesst_id": 114,
-                    "post_text": "Posttext of post 3",
-                    "post_karma": 45623,
-                    "comments": []
-                };
+
 
 
 
                 dataFactory.setStories = function (stories) {
                     if (stories === "error" && storyInfo.length === 0) {
                         storyInfo.push(post1, post2, post3,
-                                post4, post5, post6,
-                                post7, post8, post9,
-                                post10, post11, post12,
-                                post13, post14, post15);
+                                post4, post5);
                     }
                     if (stories === "cache" && storyInfo.length === 0) {
                         storyInfo.push(localStorageService.get("posts"));
