@@ -5,6 +5,7 @@ angular.module('myApp', [
   'ngRoute',
   'ngAnimate',
   'ui.bootstrap',
+  'LocalStorageModule',
   'myApp.security',
   'myApp.view1',
   'myApp.profileView',
@@ -17,7 +18,7 @@ angular.module('myApp', [
   'myApp.directives',
   'myApp.factories',
   'myApp.services',
-  'myApp.fakeBackend'
+  'myApp.fakeBackend',
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/view1'});
