@@ -78,6 +78,8 @@ ol.list > li:before {
     margin: 3px;
 }
 
+
+
 .post {
     width: 1%; 
     height: 40px; 
@@ -92,10 +94,25 @@ ol.list > li:before {
     width: 2%; 
     height: 40px; 
     float: left;
+    margin-top: -5px;
+} 
+
+input[type=checkbox].glyphicon{
+    visibility: hidden;
+    
 }
 
-.voted {
-    background-color: green;
+.glyphicon:before {
+ visibility: visible;
+}
+
+
+.voteUp {
+    color: #49E20E;
+}
+
+.voteDown {
+    color: #FF4500;
 }
 
 .title {

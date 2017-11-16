@@ -177,7 +177,7 @@ angular.module('myApp.factories', [])
                             localStorageService.set("posts", response.data);
                         }
                     }, function errorCallback(response) {
-                        if (localStorageService.get("posts").length > 0 && storyInfo.length !== 0) {
+                        if (localStorageService.isSupported && storyInfo.length !== 0) {
                             dataFactory.setStories("cache");
                             $rootScope.error = "Error: Can't connect to server - Loading cached data...";
 
@@ -239,7 +239,7 @@ angular.module('myApp.factories', [])
                 //ADD NEW POST (story/comment)
                 //POST
                 //PATH (api/post)
-                //POSTS TO BACKEND AND ALSO STORES IN LOCALSTORAGE
+                //POSTS TO BACKEND AND STORES IN LOCALSTORAGE
                 dataFactory.addPost = function (post) {
                     var commentList = [];
                     if (post.post_type === "story") {
@@ -251,8 +251,6 @@ angular.module('myApp.factories', [])
                     if (post.post_type === "comment") {
                         storyInfo.forEach(function (storyInfo) {
                             if (post.post_parent === storyInfo.hanesst_id) {
-                                if (storyInfo.comments.length > 0) {
-                                }
                                 commentList = storyInfo.comments;
                                 commentList.push(post);
                                 storyInfo.comments = commentList;

@@ -9,8 +9,8 @@
     </div>
 
     <div class="vote">
-        <a ng-show="isAuthenticated" href="" ng-click='upvote(post)' class="glyphicon glyphicon-arrow-up"></a>
-        <a ng-show="isAuthenticated" href="" ng-click='downvote(post)' class="glyphicon glyphicon-arrow-down"></a>
+        <input type="checkbox" ng-model="voteUp" ng-checked="voteUp"  ng-click='upvote(post)' class="glyphicon glyphicon-arrow-up">
+        <input type="checkbox" ng-model="voteDown" ng-ckecked="voteDown" ng-click='downvote(post)' class="glyphicon glyphicon-arrow-down">
     </div>
         <div class="title" ng-click="viewPost(post)">
             <span>{{post.post_title| limitTo:80}}</span>
